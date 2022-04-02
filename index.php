@@ -23,16 +23,16 @@
     <div class="header__container">
         <header>
             <div class="logo">
-                <a href="index.html">
+                <a href="index.php">
                     <img src="./Media/Logo.svg " alt="logo image ">
                 </a>
             </div>
             <ul class="menu introtxt">
                 <li>
-                    <a href="./Pagine/Storia.html ">My Team</a>
+                    <a href="./Pagine/MyTeam.php ">My Team</a>
                 </li>
                 <li>
-                    <a href="./Pagine/PVP.html ">Market</a>
+                    <a href="./Pagine/Market.php ">Market</a>
                 </li>
             </ul>
             <div class="cta introtxt ">
