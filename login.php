@@ -24,10 +24,11 @@
     <link rel="shortcut icon" href="./Media/logo.png" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>F1 Fantasy</title>
+    <title>Login</title>
 </head>
 
 <body onscroll="black_band()">
+    <!------------------------------------------------- Header ------------------------------------------------->
     <div class="header__container">
         <header>
             <div class="logo">
@@ -35,23 +36,26 @@
                     <img src="./Media/Logo.svg " alt="logo image ">
                 </a>
             </div>
-            <ul class="menu introtxt">
-                <li>
-                    <a href="./Pagine/myteam.php ">My Team</a>
-                </li>
-                <li>
-                    <a href="./Pagine/market.php ">Market</a>
-                </li>
-            </ul>
             <div class="cta introtxt ">
-                <a href="login.php" class="button" target="_blank ">LOGIN</a>
-            </div>
-            <div class="hamburger" onclick="showhide() ">
-                <span></span>
-                <span></span>
-                <span></span>
+                <a href="register.php" class="button" target="_blank ">REGISTRATI</a>
             </div>
         </header>
+    </div>
+
+    <div>
+        <h1>Fai il login</h1>
+
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+            <table class="tab_input" >
+                <tr>
+                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>"> required</td>
+                </tr>
+                <tr>
+                    <td>Nickname:</td> <td><input type="password" name="password"> required</td>
+                </tr>
+            </table>
+            <p><input type="submit" value="Accedi"></p>
+        </form>
     </div>
 
 
@@ -97,5 +101,3 @@
         distance: '500px',
     })
 </script>
-
-<!--Fatto da Varisco e Germanò-->
