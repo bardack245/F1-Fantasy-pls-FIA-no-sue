@@ -49,10 +49,10 @@
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <table class="tab_input" >
                 <tr>
-                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>"></td>
+                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Password:</td> <td><input type="password" name="password"></td>
+                    <td>Password:</td> <td><input type="password" name="password" required></td>
                 </tr>
             </table>
             <p><input type="submit" value="Accedi"></p>
