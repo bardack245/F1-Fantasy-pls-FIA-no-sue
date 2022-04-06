@@ -1,6 +1,8 @@
 <?php
     session_start();
     require('data/connessione_db.php');
+
+    $nickname = null;
 ?>
 
 
@@ -42,16 +44,15 @@
         </header>
     </div>
 
-    <div>
-        <h1>Fai il login</h1>
-
+    <div class="login">
+        <h1>Accedi</h1>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <table class="tab_input" >
                 <tr>
-                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>"> required</td>
+                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>"></td>
                 </tr>
                 <tr>
-                    <td>Nickname:</td> <td><input type="password" name="password"> required</td>
+                    <td>Password:</td> <td><input type="password" name="password"></td>
                 </tr>
             </table>
             <p><input type="submit" value="Accedi"></p>
