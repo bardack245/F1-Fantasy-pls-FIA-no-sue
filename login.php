@@ -2,7 +2,23 @@
     session_start();
     require('data/connessione_db.php');
 
-    $nickname = null;
+    if(isset($_SESSION['nickname'])){
+		header('location: pagine/home.php');
+	}
+
+	if(isset($_POST["nickname"])){
+		$nickname = $_POST["nickname"];
+	}
+	else{
+		$nickname = "";
+	}
+	
+	if (isset($_POST["password"])){
+		$password = $_POST["password"];
+	}
+	else {
+		$password = "";
+	}
 ?>
 
 
@@ -44,6 +60,7 @@
         </header>
     </div>
 
+    <!------------------------------------------------- Login ------------------------------------------------->
     <div class="login">
         <h1>Accedi</h1>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
@@ -58,6 +75,20 @@
             <p><input type="submit" value="Accedi"></p>
         </form>
     </div>
+
+    <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if( empty($_POST["nickname"]) or empty($_POST["password"])) {
+                echo "<p>Campi lasciati vuoti</p>";
+            } else {
+                $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
+                if($conn->connect_error){
+                    die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
+                }
+                //echo "connessione riuscita";
+                }
+            }
+    ?>
 
 
     
