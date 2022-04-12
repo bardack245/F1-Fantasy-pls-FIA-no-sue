@@ -39,7 +39,7 @@
     <!------------------------------------------------- My css  ------------------------------------------------->
     <link rel="stylesheet" href="../CSS/style.css">
     <!------------------------------------------------- favicon ------------------------------------------------->
-    <link rel="shortcut icon" href="./Media/LogoR.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../Media/LogoR.svg" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Login</title>
@@ -50,10 +50,11 @@
     <div class="header__container">
         <header>
             <div class="logo">
-                <a href="index.php">
+                <a href="../index.php">
                     <img src="../Media/Logo.svg " alt="logo image ">
                 </a>
             </div>
+            <ul class="menu introtxt"></ul>
             <div class="cta introtxt ">
                 <a href="register.php" class="button">REGISTRATI</a>
             </div>

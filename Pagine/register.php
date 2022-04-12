@@ -25,7 +25,7 @@
     <!------------------------------------------------- My css  ------------------------------------------------->
     <link rel="stylesheet" href="../CSS/style.css">
     <!------------------------------------------------- favicon ------------------------------------------------->
-    <link rel="shortcut icon" href="./Media/LogoR.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../Media/LogoR.svg" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>Login</title>
@@ -40,6 +40,7 @@
                     <img src="../Media/Logo.svg " alt="logo image ">
                 </a>
             </div>
+            <ul class="menu introtxt"></ul>
             <div class="cta introtxt ">
                 <a href="login.php" class="button">LOGIN</a>
             </div>
