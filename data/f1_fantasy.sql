@@ -14,10 +14,12 @@
 
 
 -- Dump della struttura del database f1_fantasy
+DROP DATABASE IF EXISTS `f1_fantasy`;
 CREATE DATABASE IF NOT EXISTS `f1_fantasy` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `f1_fantasy`;
 
 -- Dump della struttura di tabella f1_fantasy.fantapartecipap
+DROP TABLE IF EXISTS `fantapartecipap`;
 CREATE TABLE IF NOT EXISTS `fantapartecipap` (
   `Nomesquadra` char(50) NOT NULL,
   `Numero` int(11) NOT NULL,
@@ -28,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `fantapartecipap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.fantapartecipap: ~10 rows (circa)
+DELETE FROM `fantapartecipap`;
 /*!40000 ALTER TABLE `fantapartecipap` DISABLE KEYS */;
 INSERT INTO `fantapartecipap` (`Nomesquadra`, `Numero`) VALUES
 	('Scuderia Sburari', 16),
@@ -43,6 +46,7 @@ INSERT INTO `fantapartecipap` (`Nomesquadra`, `Numero`) VALUES
 /*!40000 ALTER TABLE `fantapartecipap` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.fantapartecipas
+DROP TABLE IF EXISTS `fantapartecipas`;
 CREATE TABLE IF NOT EXISTS `fantapartecipas` (
   `NomeSquadra` char(50) NOT NULL,
   `NomeScuderia` char(50) NOT NULL,
@@ -53,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `fantapartecipas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.fantapartecipas: ~2 rows (circa)
+DELETE FROM `fantapartecipas`;
 /*!40000 ALTER TABLE `fantapartecipas` DISABLE KEYS */;
 INSERT INTO `fantapartecipas` (`NomeSquadra`, `NomeScuderia`) VALUES
 	('Sbureria Ferrari', 'Scuderia Ferrari'),
@@ -60,6 +65,7 @@ INSERT INTO `fantapartecipas` (`NomeSquadra`, `NomeScuderia`) VALUES
 /*!40000 ALTER TABLE `fantapartecipas` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.gara
+DROP TABLE IF EXISTS `gara`;
 CREATE TABLE IF NOT EXISTS `gara` (
   `Data` date NOT NULL,
   `Autodromo` char(50) DEFAULT NULL,
@@ -68,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `gara` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.gara: ~22 rows (circa)
+DELETE FROM `gara`;
 /*!40000 ALTER TABLE `gara` DISABLE KEYS */;
 INSERT INTO `gara` (`Data`, `Autodromo`, `Luogo`) VALUES
 	('2021-03-28', 'Bahrain International Circuit', 'Bahrain'),
@@ -95,6 +102,7 @@ INSERT INTO `gara` (`Data`, `Autodromo`, `Luogo`) VALUES
 /*!40000 ALTER TABLE `gara` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.gareggia
+DROP TABLE IF EXISTS `gareggia`;
 CREATE TABLE IF NOT EXISTS `gareggia` (
   `Numero` int(11) NOT NULL,
   `Data` date NOT NULL,
@@ -107,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `gareggia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.gareggia: ~440 rows (circa)
+DELETE FROM `gareggia`;
 /*!40000 ALTER TABLE `gareggia` DISABLE KEYS */;
 INSERT INTO `gareggia` (`Numero`, `Data`, `Qualifica`, `PosFinale`) VALUES
 	(33, '2021-03-28', 1, 2),
@@ -552,6 +561,7 @@ INSERT INTO `gareggia` (`Numero`, `Data`, `Qualifica`, `PosFinale`) VALUES
 /*!40000 ALTER TABLE `gareggia` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.pilota
+DROP TABLE IF EXISTS `pilota`;
 CREATE TABLE IF NOT EXISTS `pilota` (
   `Numero` int(11) NOT NULL,
   `CognomePilota` char(50) DEFAULT NULL,
@@ -560,6 +570,7 @@ CREATE TABLE IF NOT EXISTS `pilota` (
   `PunteggioFinale` float(111,1) DEFAULT NULL,
   `ValoreIniziale` float(11,1) DEFAULT NULL,
   `ValoreFinale` float(11,1) DEFAULT NULL,
+  `Foto` char(50) DEFAULT NULL,
   `NomeScuderia` char(50) DEFAULT NULL,
   PRIMARY KEY (`Numero`),
   KEY `FK_pilota_scuderia` (`NomeScuderia`),
@@ -567,31 +578,33 @@ CREATE TABLE IF NOT EXISTS `pilota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.pilota: ~20 rows (circa)
+DELETE FROM `pilota`;
 /*!40000 ALTER TABLE `pilota` DISABLE KEYS */;
-INSERT INTO `pilota` (`Numero`, `CognomePilota`, `NomePilota`, `NazioneP`, `PunteggioFinale`, `ValoreIniziale`, `ValoreFinale`, `NomeScuderia`) VALUES
-	(3, 'Ricciardo', 'Daniel', 'Australia', NULL, 14.5, NULL, 'McLaren F1 Team'),
-	(4, 'Norris', 'Lando', 'Inghilterra', NULL, 16.0, NULL, 'McLaren F1 Team'),
-	(5, 'Vettel', 'Sebastian', 'Germania', NULL, 11.5, NULL, 'Aston Martin'),
-	(6, 'Latifi', 'Nicholas', 'Canada', NULL, 7.0, NULL, 'Williams Racing'),
-	(7, 'Raikkonen', 'Kimi', 'Finlandia', NULL, 9.0, NULL, 'Alfa Romeo F1 Team ORLEN'),
-	(9, 'Mazepin', 'Nikita', 'Russia', NULL, 5.0, NULL, 'Haas F1 Team'),
-	(10, 'Gasly', 'Pierre', 'Francia', NULL, 13.5, NULL, 'Alpha-Tauri'),
-	(11, 'Perez', 'Sergio', 'Messico', NULL, 17.5, NULL, 'RedBull Racing'),
-	(14, 'Alonso', 'Fernando', 'Spagna', NULL, 12.5, NULL, 'Alpine F1 Team'),
-	(16, 'Leclerc', 'Charles', 'Monaco', NULL, 18.0, NULL, 'Scuderia Ferrari'),
-	(18, 'Stroll', 'Lance', 'Canada', NULL, 9.5, NULL, 'Aston Martin'),
-	(22, 'Tsunoda', 'Yuki', 'Giappone', NULL, 8.5, NULL, 'Alpha-Tauri'),
-	(31, 'Ocon', 'Esteban', 'Francia', NULL, 12.0, NULL, 'Alpine F1 Team'),
-	(33, 'Verstappen', 'Max', 'Paesi Bassi', NULL, 30.5, NULL, 'RedBull Racing'),
-	(44, 'Hamilton', 'Lewis', 'Inghilterra', NULL, 31.0, NULL, 'Mercedes AMG Petronas'),
-	(47, 'Schumacher', 'Mick', 'Germania', NULL, 6.5, NULL, 'Haas F1 Team'),
-	(55, 'Sainz', 'Carlos', 'Spagna', NULL, 17.0, NULL, 'Scuderia Ferrari'),
-	(63, 'Russell', 'George', 'Inghilterra', NULL, 7.5, NULL, 'Williams Racing'),
-	(77, 'Bottas', 'Valtteri', 'Finlandia', NULL, 24.0, NULL, 'Mercedes AMG Petronas'),
-	(99, 'Giovinazzi', 'Antonio', 'Italia', NULL, 8.0, NULL, 'Alfa Romeo F1 Team ORLEN');
+INSERT INTO `pilota` (`Numero`, `CognomePilota`, `NomePilota`, `NazioneP`, `PunteggioFinale`, `ValoreIniziale`, `ValoreFinale`, `Foto`, `NomeScuderia`) VALUES
+	(3, 'Ricciardo', 'Daniel', 'Australia', NULL, 14.5, NULL, '../Media/Piloti/Ricciardo.svg', 'McLaren F1 Team'),
+	(4, 'Norris', 'Lando', 'Inghilterra', NULL, 16.0, NULL, '../Media/Piloti/Norris.svg', 'McLaren F1 Team'),
+	(5, 'Vettel', 'Sebastian', 'Germania', NULL, 11.5, NULL, '../Media/Piloti/Vettel.svg', 'Aston Martin'),
+	(6, 'Latifi', 'Nicholas', 'Canada', NULL, 7.0, NULL, '../Media/Piloti/Latifi.svg', 'Williams Racing'),
+	(7, 'Raikkonen', 'Kimi', 'Finlandia', NULL, 9.0, NULL, '../Media/Piloti/Raikkonen.svg', 'Alfa Romeo F1 Team ORLEN'),
+	(9, 'Mazepin', 'Nikita', 'Russia', NULL, 5.0, NULL, '../Media/Piloti/Mazepin.svg', 'Haas F1 Team'),
+	(10, 'Gasly', 'Pierre', 'Francia', NULL, 13.5, NULL, '../Media/Piloti/Gasly.svg', 'Alpha-Tauri'),
+	(11, 'Perez', 'Sergio', 'Messico', NULL, 17.5, NULL, '../Media/Piloti/Perez.svg', 'RedBull Racing'),
+	(14, 'Alonso', 'Fernando', 'Spagna', NULL, 12.5, NULL, '../Media/Piloti/Alonso.svg', 'Alpine F1 Team'),
+	(16, 'Leclerc', 'Charles', 'Monaco', NULL, 18.0, NULL, '../Media/Piloti/Leclerc.svg', 'Scuderia Ferrari'),
+	(18, 'Stroll', 'Lance', 'Canada', NULL, 9.5, NULL, '../Media/Piloti/Stroll.svg', 'Aston Martin'),
+	(22, 'Tsunoda', 'Yuki', 'Giappone', NULL, 8.5, NULL, '../Media/Piloti/Tsunoda.svg', 'Alpha-Tauri'),
+	(31, 'Ocon', 'Esteban', 'Francia', NULL, 12.0, NULL, '../Media/Piloti/Ocon.svg', 'Alpine F1 Team'),
+	(33, 'Verstappen', 'Max', 'Paesi Bassi', NULL, 30.5, NULL, '../Media/Piloti/Verstappen.svg', 'RedBull Racing'),
+	(44, 'Hamilton', 'Lewis', 'Inghilterra', NULL, 31.0, NULL, '../Media/Piloti/Hamilton.svg', 'Mercedes AMG Petronas'),
+	(47, 'Schumacher', 'Mick', 'Germania', NULL, 6.5, NULL, '../Media/Piloti/Schumacher.svg', 'Haas F1 Team'),
+	(55, 'Sainz', 'Carlos', 'Spagna', NULL, 17.0, NULL, '../Media/Piloti/Sainz.svg', 'Scuderia Ferrari'),
+	(63, 'Russell', 'George', 'Inghilterra', NULL, 7.5, NULL, '../Media/Piloti/Russell.svg', 'Williams Racing'),
+	(77, 'Bottas', 'Valtteri', 'Finlandia', NULL, 24.0, NULL, '../Media/Piloti/Bottas.svg', 'Mercedes AMG Petronas'),
+	(99, 'Giovinazzi', 'Antonio', 'Italia', NULL, 8.0, NULL, '../Media/Piloti/Giovinazzi.svg', 'Alfa Romeo F1 Team ORLEN');
 /*!40000 ALTER TABLE `pilota` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.scuderia
+DROP TABLE IF EXISTS `scuderia`;
 CREATE TABLE IF NOT EXISTS `scuderia` (
   `NomeScuderia` char(50) NOT NULL,
   `PunteggioF` float(111,1) DEFAULT NULL,
@@ -600,25 +613,28 @@ CREATE TABLE IF NOT EXISTS `scuderia` (
   `Nazione` char(50) DEFAULT NULL,
   `ValoreBase` float(11,1) DEFAULT NULL,
   `ValoreFinale` float(11,1) DEFAULT NULL,
+  `Foto` char(50) DEFAULT NULL,
   PRIMARY KEY (`NomeScuderia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.scuderia: ~10 rows (circa)
+DELETE FROM `scuderia`;
 /*!40000 ALTER TABLE `scuderia` DISABLE KEYS */;
-INSERT INTO `scuderia` (`NomeScuderia`, `PunteggioF`, `TPNome`, `TPCognome`, `Nazione`, `ValoreBase`, `ValoreFinale`) VALUES
-	('Alfa Romeo F1 Team ORLEN', NULL, 'Frédéric', 'Vasseur', 'Svizzera', 8.0, NULL),
-	('Alpha-Tauri', NULL, 'Franz', 'Tost', 'Italia', 10.5, NULL),
-	('Alpine F1 Team', NULL, 'Marcin', 'Butkowski', 'Francia', 14.0, NULL),
-	('Aston Martin', NULL, 'Otmar', 'Szafnauer', 'Inghilterra', 11.5, NULL),
-	('Haas F1 Team', NULL, 'Gunther', 'Steinter', 'Stati Uniti', 6.0, NULL),
-	('McLaren F1 Team', NULL, 'Zak', 'Brown', 'Inghliterra', 18.5, NULL),
-	('Mercedes AMG Petronas', NULL, 'Toto', 'Wolff', 'Germania', 34.5, NULL),
-	('RedBull Racing', NULL, 'Christian', 'Horner', 'Austria', 32.5, NULL),
-	('Scuderia Ferrari', NULL, 'Mattia', 'Binotto', 'Italia', 25.0, NULL),
-	('Williams Racing', NULL, 'Simon', 'Roberts', 'Inghilterra', 7.0, NULL);
+INSERT INTO `scuderia` (`NomeScuderia`, `PunteggioF`, `TPNome`, `TPCognome`, `Nazione`, `ValoreBase`, `ValoreFinale`, `Foto`) VALUES
+	('Alfa Romeo F1 Team ORLEN', NULL, 'Frédéric', 'Vasseur', 'Svizzera', 8.0, NULL, '../Media/Scuderie/Alfa_Romeo.svg'),
+	('Alpha-Tauri', NULL, 'Franz', 'Tost', 'Italia', 10.5, NULL, '../Media/Scuderie/Alpha_Tauri.svg'),
+	('Alpine F1 Team', NULL, 'Marcin', 'Butkowski', 'Francia', 14.0, NULL, '../Media/Scuderie/Alpine.svg'),
+	('Aston Martin', NULL, 'Otmar', 'Szafnauer', 'Inghilterra', 11.5, NULL, '../Media/Scuderie/Aston_Martin.svg'),
+	('Haas F1 Team', NULL, 'Gunther', 'Steinter', 'Stati Uniti', 6.0, NULL, '../Media/Scuderie/Haas.svg'),
+	('McLaren F1 Team', NULL, 'Zak', 'Brown', 'Inghliterra', 18.5, NULL, '../Media/Scuderie/McLaren.svg'),
+	('Mercedes AMG Petronas', NULL, 'Toto', 'Wolff', 'Germania', 34.5, NULL, '../Media/Scuderie/Mercedes.svg'),
+	('RedBull Racing', NULL, 'Christian', 'Horner', 'Austria', 32.5, NULL, '../Media/Scuderie/RedBull.svg'),
+	('Scuderia Ferrari', NULL, 'Mattia', 'Binotto', 'Italia', 25.0, NULL, '../Media/Scuderie/Ferrari.svg'),
+	('Williams Racing', NULL, 'Simon', 'Roberts', 'Inghilterra', 7.0, NULL, '../Media/Scuderie/Williams.svg');
 /*!40000 ALTER TABLE `scuderia` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.squadra
+DROP TABLE IF EXISTS `squadra`;
 CREATE TABLE IF NOT EXISTS `squadra` (
   `NomeSquadra` char(50) NOT NULL,
   `Punteggio` int(11) DEFAULT NULL,
@@ -629,13 +645,15 @@ CREATE TABLE IF NOT EXISTS `squadra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.squadra: ~2 rows (circa)
+DELETE FROM `squadra`;
 /*!40000 ALTER TABLE `squadra` DISABLE KEYS */;
 INSERT INTO `squadra` (`NomeSquadra`, `Punteggio`, `Nick`) VALUES
-	('Sbureria Ferrari', NULL, 'YuukiGerma'),
+	('Sbureria Ferrari', NULL, 'yuukigerma'),
 	('Scuderia Sburari', NULL, 'Bardack');
 /*!40000 ALTER TABLE `squadra` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.utente
+DROP TABLE IF EXISTS `utente`;
 CREATE TABLE IF NOT EXISTS `utente` (
   `Nick` char(50) NOT NULL,
   `Nome` char(50) DEFAULT NULL,
@@ -646,6 +664,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.utente: ~2 rows (circa)
+DELETE FROM `utente`;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
 INSERT INTO `utente` (`Nick`, `Nome`, `Cognome`, `Email`, `PSW`) VALUES
 	('Bardack', 'Marco', 'Varisco', 'marco.varisco@gmail.com', 'Admin'),
