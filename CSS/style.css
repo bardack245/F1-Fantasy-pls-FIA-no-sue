@@ -103,6 +103,32 @@ header {
 }
 
 
+/*  -----------------------------------------------Market ----------------------------------------------- */
+.box-pilota{
+    border: 2px solid black;
+    display: inline flex;
+    height: 320px;
+    width: auto;
+}
+
+.foto-pilota{
+    height: 300px;
+    display: flex;
+    float: left;
+}
+
+.info-pilota{
+}
+
+.valore{
+    display: flex;
+    float: right;
+    padding-right: 50px;
+    transform: translateY(-100px);
+}
+
+
+
 /*  -----------------------------------------------cta ----------------------------------------------- */
 
 .cta {
