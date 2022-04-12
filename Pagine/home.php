@@ -22,7 +22,7 @@
     <!------------------------------------------------- My css  ------------------------------------------------->
     <link rel="stylesheet" href="../CSS/style.css">
     <!------------------------------------------------- favicon ------------------------------------------------->
-    <link rel="shortcut icon" href="./Media/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./Media/LogoR.svg" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
     <title>F1 Fantasy</title>
