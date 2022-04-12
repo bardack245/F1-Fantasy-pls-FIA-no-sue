@@ -1,24 +1,10 @@
 <?php
-    session_start();
-    require('data/connessione_db.php');
-
-    if(isset($_SESSION['nickname'])){
-		header('location: pagine/home.php');
-	}
-
-	if(isset($_POST["nickname"])){
-		$nickname = $_POST["nickname"];
-	}
-	else{
-		$nickname = "";
-	}
-	
-	if (isset($_POST["password"])){
-		$password = $_POST["password"];
-	}
-	else {
-		$password = "";
-	}
+    if(isset($_POST["nickname"])) $nickname = $_POST["nickname"];  else $nickname = "";
+    if(isset($_POST["password"])) $password = $_POST["password"];  else $password = "";
+    if(isset($_POST["conferma"])) $conferma = $_POST["conferma"];  else $conferma = "";
+    if(isset($_POST["nome"])) $nome = $_POST["nome"];  else $nome = "";
+    if(isset($_POST["cognome"])) $cognome = $_POST["cognome"];  else $cognome = "";
+    if(isset($_POST["email"])) $email = $_POST["email"];  else $email = "";
 ?>
 
 
@@ -37,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <!------------------------------------------------- My css  ------------------------------------------------->
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
     <!------------------------------------------------- favicon ------------------------------------------------->
     <link rel="shortcut icon" href="./Media/logo.png" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
@@ -50,59 +36,81 @@
     <div class="header__container">
         <header>
             <div class="logo">
-                <a href="index.php">
-                    <img src="./Media/Logo.svg " alt="logo image ">
+                <a href="../index.php">
+                    <img src="../Media/Logo.svg " alt="logo image ">
                 </a>
             </div>
             <div class="cta introtxt ">
-                <a href="register.php" class="button" target="_blank ">REGISTRATI</a>
+                <a href="login.php" class="button">LOGIN</a>
             </div>
         </header>
     </div>
 
     <!------------------------------------------------- Login ------------------------------------------------->
     <div class="login">
-        <h1>Accedi</h1>
+        <h1>Registrati</h1>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <table class="tab_input" >
                 <tr>
                     <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Password:</td> <td><input type="password" name="password" required></td>
+                    <td>Password:</td> <td><input type="password" name="password" value = "<?php echo $password; ?>" required></td>
+                </tr>
+                <tr>
+                    <td>Conferma PSW:</td> <td><input type="password" name="conferma" value = "<?php echo $conferma; ?>" required></td>
+                </tr>
+                <tr>
+                    <td>Nome:</td> <td><input type="text" name="nome" value = "<?php echo $nome; ?>" required></td>
+                </tr>
+                <tr>
+                    <td>Cognome:</td> <td><input type="text" name="cognome" value = "<?php echo $cognome; ?>" required></td>
+                </tr>
+                <tr>
+                    <td>Email:</td> <td><input type="email" name="email" value = "<?php echo $email; ?>" required></td>
                 </tr>
             </table>
-            <p><input type="submit" value="Accedi"></p>
+            <p><input type="submit" value="Registrati"></p>
         </form>
     </div>
 
     <?php
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            if( empty($_POST["nickname"]) or empty($_POST["password"])) {
-                echo "<p>Campi lasciati vuoti</p>";
+        if(isset($_POST["nickname"]) and isset($_POST["password"])) {
+            if ($_POST["nickname"] == "" or $_POST["password"] == "") {
+                echo "nickname e password non possono essere vuoti!";
+            } elseif ($_POST["password"] != $_POST["conferma"]){
+                echo "Le password inserite non corrispondono";
             } else {
-                $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
+                $conn = new mysqli("localhost","root","","f1_fantasy");
                 if($conn->connect_error){
                     die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
                 }
                 
-                
-                $myquery = "SELECT Nick, PSW 
+                $myquery = "SELECT Nick
                 FROM utente 
-                WHERE Nick='$nickname'
-                    AND PSW='$password'";
+                WHERE Nick = '". $_POST["nickname"] ."'";
 
                 $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
 
-                if($ris->num_rows == 0){
-                    echo "<p>Utente non trovato o password errata</p>";
+                if($ris->num_rows != 0){
+                    echo "<p>Questo nickname è già stato utilizzato";
                     $conn->close();
                 }
                 else {
-                    $_SESSION["nickname"]=$nickname;
-                                            
-                    $conn->close();
-                    header("location: pagine/home.php");
+                    $myquery = "INSERT INTO utente (Nick, PSW, Nome, Cognome, Email)
+                                VALUES ('$nickname', '$password', '$nome', '$cognome', '$email')";
+                    
+                    if ($conn->query($myquery) === true) {
+                        session_start();
+                        $_SESSION["nickname"]=$nickname;
+                                    
+                        $conn->close();
+        
+                            echo "Registrazione effettuata con successo!<br>sarai ridirezionato alla home tra 5 secondi.";
+                            header('Refresh: 5; URL=home.php');
+                        } else {
+                                echo "Non è stato possibile effettuare la registrazione per il seguente motivo: " . $conn->error;
+                        }
 
                 }
             }

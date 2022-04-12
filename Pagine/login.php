@@ -1,7 +1,24 @@
 <?php
     session_start();
+    require('../data/connessione_db.php');
 
-    $nickname = $_SESSION['nickname']
+    if(isset($_SESSION['nickname'])){
+		header('location: home.php');
+	}
+
+	if(isset($_POST["nickname"])){
+		$nickname = $_POST["nickname"];
+	}
+	else{
+		$nickname = "";
+	}
+	
+	if (isset($_POST["password"])){
+		$password = $_POST["password"];
+	}
+	else {
+		$password = "";
+	}
 ?>
 
 
@@ -25,40 +42,73 @@
     <link rel="shortcut icon" href="./Media/logo.png" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>F1 Fantasy</title>
+    <title>Login</title>
 </head>
 
 <body onscroll="black_band()">
+    <!------------------------------------------------- Header ------------------------------------------------->
     <div class="header__container">
         <header>
             <div class="logo">
-                <a href="home.php">
+                <a href="index.php">
                     <img src="../Media/Logo.svg " alt="logo image ">
                 </a>
             </div>
-            <ul class="menu introtxt">
-                <li>
-                    <a href="myteam.php ">My Team</a>
-                </li>
-                <li>
-                    <a href="market.php ">Market</a>
-                </li>
-            </ul>
             <div class="cta introtxt ">
-                <a href="account.php" class="button" >
-                    <?php echo "$nickname" ?>
-                </a>
-            </div>
-            <div class="cta introtxt ">
-                <a href="logout.php" class="button" >LOGOUT</a>
-            </div>
-            <div class="hamburger" onclick="showhide() ">
-                <span></span>
-                <span></span>
-                <span></span>
+                <a href="register.php" class="button">REGISTRATI</a>
             </div>
         </header>
     </div>
+
+    <!------------------------------------------------- Login ------------------------------------------------->
+    <div class="login">
+        <h1>Accedi</h1>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+            <table class="tab_input" >
+                <tr>
+                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
+                </tr>
+                <tr>
+                    <td>Password:</td> <td><input type="password" name="password" required></td>
+                </tr>
+            </table>
+            <p><input type="submit" value="Accedi"></p>
+        </form>
+    </div>
+
+    <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if( empty($_POST["nickname"]) or empty($_POST["password"])) {
+                echo "<p>Campi lasciati vuoti</p>";
+            } else {
+                $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
+                if($conn->connect_error){
+                    die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
+                }
+                
+                
+                $myquery = "SELECT Nick, PSW 
+                FROM utente 
+                WHERE Nick='$nickname'
+                    AND PSW='$password'";
+
+                $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
+
+                if($ris->num_rows == 0){
+                    echo "<p>Utente non trovato o password errata</p>";
+                    $conn->close();
+                }
+                else {
+                    $_SESSION["nickname"]=$nickname;
+                                            
+                    $conn->close();
+                    header("location: home.php");
+
+                }
+            }
+        }
+
+    ?>
 
 
     
@@ -103,5 +153,3 @@
         distance: '500px',
     })
 </script>
-
-<!--Fatto da Varisco e Germanò-->

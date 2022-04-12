@@ -37,14 +37,11 @@
             </div>
             <ul class="menu introtxt">
                 <li>
-                    <a href="./Pagine/myteam.php ">My Team</a>
-                </li>
-                <li>
                     <a href="./Pagine/market.php ">Market</a>
                 </li>
             </ul>
             <div class="cta introtxt ">
-                <a href="login.php" class="button" target="_blank ">LOGIN</a>
+                <a href="./Pagine/login.php" class="button" >LOGIN</a>
             </div>
             <div class="hamburger" onclick="showhide() ">
                 <span></span>
