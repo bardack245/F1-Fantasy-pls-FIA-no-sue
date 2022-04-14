@@ -18,15 +18,31 @@ int punteggio (int q, int f, bool comp){
     return tmp;
 }
 
+float variazione(int punteggio, int punteggioprec, float valprec){
+    float var;
+    int tmp;
+    tmp=(punteggio-punteggioprec);
+    var= tmp/10;
+    var*=0.1;
+    valprec+=var;
+    return valprec;
+}
+
 
 int main(){
    
+    int punteggioprec=0;
+    float valprec;
+
+    cin>>valprec;
+
    while(true){
     
         int f;
         int q;
         bool comp;
         int tmp;
+        float val;
 
         cin>>q;
         cin>>f;
@@ -38,8 +54,14 @@ int main(){
 
         tmp= punteggio(q, f, comp);
 
-        cout<<"\n\nIl punteggio e\': "<<tmp<<"\n\n";
-        
+        cout<<"\n\nIl punteggio e\': "<<tmp<<"\n";
+
+        val=variazione(tmp, punteggioprec, valprec);
+
+        cout<<"Il valore è e\': "<<val<<"\n\n\n\n";
+
+        punteggioprec=tmp;
+        valprec=val;
     }
 
     return 0;
