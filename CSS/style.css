@@ -105,10 +105,22 @@ header {
 
 /*  -----------------------------------------------Market ----------------------------------------------- */
 .box-pilota{
-    border: 2px solid black;
-    display: inline flex;
+    border-radius: 25px;
+    box-shadow:0px 0px 10px 2px #000000 ;
+    margin: 0 2.5%;
+    display: inline-flex;
     height: 320px;
-    width: auto;
+    width: 95%;
+}
+
+.box-scuderia{
+    background-color:white;
+    border-radius: 25px;
+    box-shadow:0px 0px 10px 2px #000000 ;
+    margin: 0 2.5%;
+    display: inline-flex;
+    height: 320px;
+    width: 95%;
 }
 
 .foto-pilota{
@@ -118,15 +130,28 @@ header {
 }
 
 .info-pilota{
+    display: block;
+}
+
+.info-scuderia{
+    display: block;
+    padding-left: 50px;
 }
 
 .valore{
     display: flex;
     float: right;
-    padding-right: 50px;
-    transform: translateY(-100px);
+    padding-left: 0;
+    transform: translate(300%, -100px);
 }
 
+.info-pilota p{
+    color: white;
+}
+
+.titolo{
+    text-align: center;
+}
 
 
 /*  -----------------------------------------------cta ----------------------------------------------- */
