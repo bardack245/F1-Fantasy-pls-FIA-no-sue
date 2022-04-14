@@ -95,7 +95,7 @@
             die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
         }
 
-        $myquery = 'SELECT Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreIniziale, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
+        $myquery = 'SELECT Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreIniziale, pilota.ValoreFinale, PunteggioFInale, pilota.NomeScuderia, pilota.Foto, Colore
                     FROM pilota JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
                     WHERE "$numero" = Numero';
         
@@ -104,6 +104,14 @@
         $nome = $ris["NomePilota"];
         $cognome = $ris["CognomePilota"];
         $nazione = $ris["NazioneP"];
+        $valoreI = $ris["ValoreIniziale"];
+        $valoreF = $ris["ValoreFinale"];
+        $punteggioF = $ris["PunteggioFinale"];
+        $scuderia = $ris["NomeScuderia"];
+        $foto = $ris["Foto"];
+        $colore = $ris["Colore"];
+
+        echo $cognome;
 
 
 
