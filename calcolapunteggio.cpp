@@ -32,6 +32,7 @@ float variazione(int punteggio, int punteggioprec, float valprec){
 int main(){
    
     int punteggioprec=0;
+    int puntot=0;
     float valprec;
 
     cin>>valprec;
@@ -58,11 +59,14 @@ int main(){
 
         val=variazione(tmp, punteggioprec, valprec);
 
-        cout<<"Il valore è e\': "<<val<<"\n\n\n\n";
+        cout<<"Il valore e\': "<<val<<"\n\n\n\n";
 
         punteggioprec=tmp;
         valprec=val;
+        puntot+=tmp;
     }
+
+    cout<<"Il punteggio finale e\': "<<puntot;
 
     return 0;
 }
