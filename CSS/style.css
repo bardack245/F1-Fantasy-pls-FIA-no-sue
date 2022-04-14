@@ -153,6 +153,28 @@ header {
     text-align: center;
 }
 
+/*  -----------------------------------------------Market ----------------------------------------------- */
+.informazioni-pilota{
+    display: inline-flex;
+    height: 525px;
+}
+
+.foto{
+    height: 500px;
+    display: flex;
+    float: left;
+}
+
+.value{
+    display: flex;
+    padding-left: 0;
+}
+
+.nome{
+    width: 40%;
+    margin: 0%;
+}
+
 
 /*  -----------------------------------------------cta ----------------------------------------------- */
 

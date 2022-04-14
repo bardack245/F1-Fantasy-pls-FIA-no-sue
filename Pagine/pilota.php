@@ -95,25 +95,41 @@
             die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
         }
 
-        $myquery = 'SELECT Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreIniziale, pilota.ValoreFinale, PunteggioFInale, pilota.NomeScuderia, pilota.Foto, Colore
-                    FROM pilota JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
-                    WHERE "$numero" = Numero';
+        $myquery = "SELECT Numero, NomePilota, CognomePilota, NazioneP, ValoreFinale, PunteggioFinale, NomeScuderia, Foto
+                    FROM pilota
+                    WHERE $numero = Numero";
         
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
 
-        $nome = $ris["NomePilota"];
-        $cognome = $ris["CognomePilota"];
-        $nazione = $ris["NazioneP"];
-        $valoreI = $ris["ValoreIniziale"];
-        $valoreF = $ris["ValoreFinale"];
-        $punteggioF = $ris["PunteggioFinale"];
-        $scuderia = $ris["NomeScuderia"];
-        $foto = $ris["Foto"];
-        $colore = $ris["Colore"];
+        foreach($ris as $row){
+            $nome = $row["NomePilota"];
+            $cognome = $row['CognomePilota'];
+            $nazione = $row["NazioneP"];
+            $valoreF = $row["ValoreFinale"];
+            $punteggioF = $row["PunteggioFinale"];
+            $scuderia = $row["NomeScuderia"];
+            $foto = $row["Foto"];
+        }
 
-        echo $cognome;
+        echo "<div class = 'informazioni'>
+                <div class='foto'>
+                    <img src='$foto' alt='$nome $cognome'>
+                </div>
+                <div class = 'flex nome'>
+                    <p class='bigtxt'>$nome $cognome $numero</p>
+                </div>
+                <div class='value'>
+                    <p class='bigtxt'>Valore: $valoreF</p>
+                    <p class='bigtxt' style = 'transform: translateX(300px)'>Punteggio: $punteggioF</p>
+                </div>
+                <div class='block'>
+                    <p class='normaltxt'>$nazione</p>
+                    <a href='scuderia.php?nomescuderia=$scuderia' class = 'normaltxt'>$scuderia</a>
+                </div>
+            </div>";
 
-
+        
+           
 
 
 

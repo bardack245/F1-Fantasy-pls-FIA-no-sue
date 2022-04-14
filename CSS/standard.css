@@ -6,6 +6,14 @@
     display: flow-root;
 }
 
+.block{
+    display: block;
+}
+
+.flex{
+    display: flex;
+}
+
 
 /* -----------------------------------------------More base styles----------------------------------------------- */
 
