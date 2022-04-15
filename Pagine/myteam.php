@@ -1,6 +1,11 @@
 <?php
     session_start();
     require('../data/connessione_db.php');
+
+    if(!isset($_SESSION["nickname"]))
+    {
+        header("location: ../index.php");
+    };
 ?>
 
 <!DOCTYPE html>
@@ -24,73 +29,47 @@
 </head>
 <body onscroll="black_band()">
     <?php
-        if(!isset($_SESSION["nickname"]))
-        {
-            echo "<div class='header__container'>
-                    <header>
-                        <div class='logo'>
-                            <a href='../index.php'>
-                                <img src='../Media/Logo.svg ' alt='logo image '>
-                            </a>
-                        </div>
-                        <ul class='menu introtxt'></ul>
-                        <div class='cta introtxt '>
-                            <a href='login.php' class='button' >LOGIN</a>
-                        </div>
-                        <div class='hamburger' onclick='showhide() '>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </header>
-                </div>";
-        } else 
-        {
-            $nickname = $_SESSION['nickname'];
+        $nickname = $_SESSION['nickname'];
 
-            echo "<div class='header__container'>
-                    <header>
-                        <div class='logo'>
-                            <a href='../index.php'>
-                                <img src='../Media/Logo.svg ' alt='logo image '>
-                            </a>
-                        </div>
-                        <ul class='menu introtxt'>
-                            <li>
-                                <a href='myteam.php '>My Team</a>
-                            </li>
-                        </ul>
-                        <div class='cta introtxt'>
-                            <a href='account.php' class='button' >
-                                $nickname
-                            </a>
-                        </div>
-                        <div class='cta introtxt '>
-                            <a href='logout.php' class='button' >LOGOUT</a>
-                        </div>
-                        <div class='hamburger' onclick='showhide() '>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </header>
-                </div>";
-        }
-    
-    ?>
+        echo "<div class='header__container'>
+                <header>
+                    <div class='logo'>
+                        <a href='../index.php'>
+                            <img src='../Media/Logo.svg ' alt='logo image '>
+                        </a>
+                    </div>
+                    <ul class='menu introtxt'>
+                        <li>
+                            <a href='market.php '>Market</a>
+                        </li>
+                    </ul>
+                    <div class='cta introtxt'>
+                        <a href='account.php' class='button' >
+                            $nickname
+                        </a>
+                    </div>
+                    <div class='cta introtxt '>
+                        <a href='logout.php' class='button' >LOGOUT</a>
+                    </div>
+                    <div class='hamburger' onclick='showhide() '>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </header>
+            </div>
+            <div class = 'mt3'></div>";
 
 
-    <div class = 'mt3'></div>
-    <p class="titolo bigtxt">PILOTI:</p>
-
-    <?php
+        
         $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
         if($conn->connect_error){
             die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
         }
 
-        $myquery = "SELECT Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
-                    FROM pilota JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia";
+        $myquery = "SELECT squadra.NomeSquadra, pilota.Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
+                    FROM utente JOIN squadra ON utente.Nick = squadra.Nick JOIN fantapartecipap ON squadra.NomeSquadra = fantapartecipap.Nomesquadra JOIN pilota ON fantapartecipap.Numero = pilota.Numero JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
+                    WHERE '$nickname' = utente.Nick";
 
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
 
@@ -103,8 +82,8 @@
         $foto = array();
         $colore = array();
 
-        while($row = $ris->fetch_assoc())
-        {
+        foreach($ris as $row){
+            $NomeSquadra = $row["NomeSquadra"];
             $numero[] = $row["Numero"];
             $nome[] = $row["NomePilota"];
             $cognome[] = $row["CognomePilota"];
@@ -115,6 +94,7 @@
             $colore[] = $row["Colore"];
         }
 
+        echo "<h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
         for ($temp = 0; $temp < count($numero); $temp++)
         {
             echo "<a href='pilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
@@ -130,59 +110,40 @@
                 </a>
                 <br><br><br>";
         }
-    ?>
 
-    <p class="titolo bigtxt">SCUDERIE:</p>
-
-    <?php
-        $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
-        if($conn->connect_error){
-            die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
-        }
-
-        $myquery = "SELECT NomeScuderia, TPNome, TPCognome, Nazione, ValoreFinale, Foto, Colore
-        FROM scuderia";
+        $myquery = "SELECT squadra.NomeSquadra, scuderia.NomeScuderia, TPNome, TPCognome, Nazione, ValoreFinale, Foto, Colore
+                    FROM utente JOIN squadra ON utente.Nick = squadra.Nick JOIN fantapartecipas ON squadra.NomeSquadra = fantapartecipas.NomeSquadra JOIN scuderia ON fantapartecipas.NomeScuderia = scuderia.NomeScuderia
+                    WHERE '$nickname' = utente.Nick";
 
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
 
-        $nome = array();
-        $cognome = array();
-        $nazione = array();
-        $valore = array();
-        $scuderia = array();
-        $foto = array();
-        $colore = array();
-
-        while($row = $ris->fetch_assoc())
+        foreach($ris as $row)
         {
-            $nome[] = $row["TPNome"];
-            $cognome[] = $row["TPCognome"];
-            $nazione[] = $row["Nazione"];
-            $valore[] = $row["ValoreFinale"];
-            $scuderia[] = $row["NomeScuderia"];
-            $foto[] = $row["Foto"];
-            $colore[] = $row["Colore"];
+            $nome = $row["TPNome"];
+            $cognome = $row["TPCognome"];
+            $nazione = $row["Nazione"];
+            $valore = $row["ValoreFinale"];
+            $scuderia = $row["NomeScuderia"];
+            $foto = $row["Foto"];
+            $colore = $row["Colore"];
         }
 
-        for ($temp = 0; $temp < count($scuderia); $temp++)
-        {
-            echo "<a href='scuderia.php' class = 'box-scuderia' style = 'border: 5px solid $colore[$temp]' input type='submit'>
+        echo "<a href='scuderia.php' class = 'box-scuderia' style = 'border: 5px solid $colore' input type='submit'>
                 <div class = 'foto-pilota'>
-                    <img src='$foto[$temp]' alt='$scuderia[$temp]' >
+                    <img src='$foto' alt='$scuderia' >
                 </div>
                 <div class = 'info-scuderia'>
-                    <p class='bigtxt'>$scuderia[$temp] </p>
-                    <p class='valore bigtxt'>Valore: $valore[$temp]</p>
-                    <p class='normaltxt'>$nazione[$temp]</p>
-                    <p class='normaltxt'>$nome[$temp] $cognome[$temp]</p>
+                    <p class='bigtxt'>$scuderia </p>
+                    <p class='valore bigtxt'>Valore: $valore</p>
+                    <p class='normaltxt'>$nazione</p>
+                    <p class='normaltxt'>$nome $cognome</p>
                 </div>
                 
                 </a>
                 <br><br><br>";
-        }
 
+        
     ?>
-
 
 
 

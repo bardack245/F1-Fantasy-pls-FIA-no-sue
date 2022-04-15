@@ -28,29 +28,68 @@
 </head>
 
 <body onscroll="black_band()">
-    <div class="header__container">
-        <header>
-            <div class="logo">
-                <a href="index.php">
-                    <img src="./Media/Logo.svg " alt="logo image ">
-                </a>
-            </div>
-            <ul class="menu introtxt">
-                <li>
-                    <a href="./Pagine/market.php ">Market</a>
-                </li>
-            </ul>
-            <div class="cta introtxt ">
-                <a href="./Pagine/login.php" class="button" >LOGIN</a>
-            </div>
-            <div class="hamburger" onclick="showhide() ">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </header>
-    </div>
+<?php
+        if(!isset($_SESSION["nickname"]))
+        {
+            echo "<div class='header__container'>
+                    <header>
+                        <div class='logo'>
+                            <a href='index.php'>
+                                <img src='Media/Logo.svg ' alt='logo image '>
+                            </a>
+                        </div>
+                        <ul class='menu introtxt'>
+                            <li>
+                                <a href='Pagine/market.php'>Market</a>
+                            </li>
+                        </ul>
+                        <div class='cta introtxt '>
+                            <a href='Pagine/login.php' class='button' >LOGIN</a>
+                        </div>
+                        <div class='hamburger' onclick='showhide() '>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </header>
+                </div>";
+        } else 
+        {
+            $nickname = $_SESSION['nickname'];
 
+            echo "<div class='header__container'>
+                    <header>
+                        <div class='logo'>
+                            <a href='index.php'>
+                                <img src='Media/Logo.svg ' alt='logo image '>
+                            </a>
+                        </div>
+                        <ul class='menu introtxt'>
+                            <li>
+                                <a href='Pagine/myteam.php '>My Team</a>
+                            </li>
+                            <li>
+                                <a href='Pagine/market.php'>Market</a>
+                            </li>
+                        </ul>
+                        <div class='cta introtxt'>
+                            <a href='account.php' class='button' >
+                                $nickname
+                            </a>
+                        </div>
+                        <div class='cta introtxt '>
+                            <a href='Pagine/logout.php' class='button' >LOGOUT</a>
+                        </div>
+                        <div class='hamburger' onclick='showhide() '>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </header>
+                </div>";
+        }
+    
+    ?>
 
     
 

@@ -63,8 +63,8 @@
 
     <!------------------------------------------------- Login ------------------------------------------------->
     <div class="login">
-        <h1>Accedi</h1>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+        <h1 style="width: 20%; margin: auto;">Accedi</h1>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
             <table class="tab_input" >
                 <tr>
                     <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
@@ -73,7 +73,7 @@
                     <td>Password:</td> <td><input type="password" name="password" required></td>
                 </tr>
             </table>
-            <p><input type="submit" value="Accedi"></p>
+            <p style="width: 20%; margin: auto;"><input type="submit" value="Accedi"></p>
         </form>
     </div>
 
@@ -103,7 +103,7 @@
                     $_SESSION["nickname"]=$nickname;
                                             
                     $conn->close();
-                    header("location: home.php");
+                    header("location: ../index.php");
 
                 }
             }

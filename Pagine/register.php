@@ -49,8 +49,8 @@
 
     <!------------------------------------------------- Register ------------------------------------------------->
     <div class="login">
-        <h1>Registrati</h1>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+        <h1 style="width: 20%; margin: auto;">Registrati</h1>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
             <table class="tab_input" >
                 <tr>
                     <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
@@ -71,7 +71,7 @@
                     <td>Email:</td> <td><input type="email" name="email" value = "<?php echo $email; ?>" required></td>
                 </tr>
             </table>
-            <p><input type="submit" value="Registrati"></p>
+            <p style="width: 20%; margin: auto;"><input type="submit" value="Registrati"></p>
         </form>
     </div>
 
@@ -108,7 +108,7 @@
                         $conn->close();
         
                             echo "Registrazione effettuata con successo!<br>sarai ridirezionato alla home tra 2 secondi.";
-                            header('Refresh: 2; URL=home.php');
+                            header('Refresh: 2; URL=../index.php');
                         } else {
                                 echo "Non è stato possibile effettuare la registrazione per il seguente motivo: " . $conn->error;
                         }
