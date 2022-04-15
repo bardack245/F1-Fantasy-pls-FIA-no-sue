@@ -22,7 +22,7 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <!------------------------------------------------- Anychart ------------------------------------------------->
     <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
-    <title>Market</title>
+    <title>Pilota</title>
 </head>
 <body onscroll="black_band()">
     <?php

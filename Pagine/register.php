@@ -28,7 +28,7 @@
     <link rel="shortcut icon" href="../Media/LogoR.svg" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>Login</title>
+    <title>Register</title>
 </head>
 
 <body onscroll="black_band()">

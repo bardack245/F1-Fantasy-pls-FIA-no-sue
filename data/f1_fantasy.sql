@@ -614,7 +614,6 @@ CREATE TABLE IF NOT EXISTS `scuderia` (
   `TPCognome` char(50) DEFAULT NULL,
   `Nazione` char(50) DEFAULT NULL,
   `ValoreBase` float(11,1) DEFAULT NULL,
-  `ValoreFinale` float(11,1) DEFAULT NULL,
   `Foto` char(50) DEFAULT NULL,
   `Colore` char(7) DEFAULT NULL,
   PRIMARY KEY (`NomeScuderia`)
@@ -623,17 +622,17 @@ CREATE TABLE IF NOT EXISTS `scuderia` (
 -- Dump dei dati della tabella f1_fantasy.scuderia: ~10 rows (circa)
 DELETE FROM `scuderia`;
 /*!40000 ALTER TABLE `scuderia` DISABLE KEYS */;
-INSERT INTO `scuderia` (`NomeScuderia`, `PunteggioF`, `TPNome`, `TPCognome`, `Nazione`, `ValoreBase`, `ValoreFinale`, `Foto`, `Colore`) VALUES
-	('Alfa Romeo F1 Team ORLEN', NULL, 'Frédéric', 'Vasseur', 'Svizzera', 8.0, NULL, '../Media/Scuderie/Alfa_Romeo.png', '#9a142e'),
-	('Alpha-Tauri', NULL, 'Franz', 'Tost', 'Italia', 10.5, NULL, '../Media/Scuderie/Alpha_Tauri.png', '#20394c'),
-	('Alpine F1 Team', NULL, 'Marcin', 'Butkowski', 'Francia', 14.0, NULL, '../Media/Scuderie/Alpine.png', '#0071c2'),
-	('Aston Martin', NULL, 'Otmar', 'Szafnauer', 'Inghilterra', 11.5, NULL, '../Media/Scuderie/Aston_Martin.png', '#1e7c52'),
-	('Haas F1 Team', NULL, 'Gunther', 'Steinter', 'Stati Uniti', 6.0, NULL, '../Media/Scuderie/Haas.png', '#ec1a3b'),
-	('McLaren F1 Team', NULL, 'Zak', 'Brown', 'Inghliterra', 18.5, NULL, '../Media/Scuderie/McLaren.png', '#ff7800'),
-	('Mercedes AMG Petronas', NULL, 'Toto', 'Wolff', 'Germania', 34.5, NULL, '../Media/Scuderie/Mercedes.png', '#333f47'),
-	('RedBull Racing', NULL, 'Christian', 'Horner', 'Austria', 32.5, NULL, '../Media/Scuderie/RedBull.png', '#011e3d'),
-	('Scuderia Ferrari', NULL, 'Mattia', 'Binotto', 'Italia', 25.0, NULL, '../Media/Scuderie/Ferrari.png', '#ed1c24'),
-	('Williams Racing', NULL, 'Simon', 'Roberts', 'Inghilterra', 7.0, NULL, '../Media/Scuderie/Williams.png', '#00a0de');
+INSERT INTO `scuderia` (`NomeScuderia`, `PunteggioF`, `TPNome`, `TPCognome`, `Nazione`, `ValoreBase`, `Foto`, `Colore`) VALUES
+	('Alfa Romeo F1 Team ORLEN', NULL, 'Frédéric', 'Vasseur', 'Svizzera', 8.0, '../Media/Scuderie/Alfa_Romeo.png', '#9a142e'),
+	('Alpha-Tauri', NULL, 'Franz', 'Tost', 'Italia', 10.5, '../Media/Scuderie/Alpha_Tauri.png', '#20394c'),
+	('Alpine F1 Team', NULL, 'Marcin', 'Butkowski', 'Francia', 14.0, '../Media/Scuderie/Alpine.png', '#0071c2'),
+	('Aston Martin', NULL, 'Otmar', 'Szafnauer', 'Inghilterra', 11.5, '../Media/Scuderie/Aston_Martin.png', '#1e7c52'),
+	('Haas F1 Team', NULL, 'Gunther', 'Steinter', 'Stati Uniti', 6.0, '../Media/Scuderie/Haas.png', '#ec1a3b'),
+	('McLaren F1 Team', NULL, 'Zak', 'Brown', 'Inghliterra', 18.5, '../Media/Scuderie/McLaren.png', '#ff7800'),
+	('Mercedes AMG Petronas', NULL, 'Toto', 'Wolff', 'Germania', 34.5, '../Media/Scuderie/Mercedes.png', '#333f47'),
+	('RedBull Racing', NULL, 'Christian', 'Horner', 'Austria', 32.5, '../Media/Scuderie/RedBull.png', '#011e3d'),
+	('Scuderia Ferrari', NULL, 'Mattia', 'Binotto', 'Italia', 25.0, '../Media/Scuderie/Ferrari.png', '#ed1c24'),
+	('Williams Racing', NULL, 'Simon', 'Roberts', 'Inghilterra', 7.0, '../Media/Scuderie/Williams.png', '#00a0de');
 /*!40000 ALTER TABLE `scuderia` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.squadra

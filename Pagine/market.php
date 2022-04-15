@@ -140,7 +140,7 @@
             die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
         }
 
-        $myquery = "SELECT NomeScuderia, TPNome, TPCognome, Nazione, ValoreFinale, Foto, Colore
+        $myquery = "SELECT NomeScuderia, TPNome, TPCognome, Nazione, ValoreBase, Foto, Colore
         FROM scuderia";
 
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
@@ -158,7 +158,7 @@
             $nome[] = $row["TPNome"];
             $cognome[] = $row["TPCognome"];
             $nazione[] = $row["Nazione"];
-            $valore[] = $row["ValoreFinale"];
+            $valore[] = $row["ValoreBase"];
             $scuderia[] = $row["NomeScuderia"];
             $foto[] = $row["Foto"];
             $colore[] = $row["Colore"];
@@ -166,7 +166,7 @@
 
         for ($temp = 0; $temp < count($scuderia); $temp++)
         {
-            echo "<a href='scuderia.php' class = 'box-scuderia' style = 'border: 5px solid $colore[$temp]' input type='submit'>
+            echo "<a href='scuderia.php?nomescuderia=$scuderia[$temp]' class = 'box-scuderia' style = 'border: 5px solid $colore[$temp]' input type='submit'>
                 <div class = 'foto-pilota'>
                     <img src='$foto[$temp]' alt='$scuderia[$temp]' >
                 </div>

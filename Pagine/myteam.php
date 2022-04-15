@@ -25,7 +25,7 @@
     <link rel="shortcut icon" href="../Media/LogoR.svg" type="image/x-icon">
     <!------------------------------------------------- Scrollreveal ------------------------------------------------->
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>Market</title>
+    <title>My Team</title>
 </head>
 <body onscroll="black_band()">
     <?php
@@ -111,7 +111,7 @@
                 <br><br><br>";
         }
 
-        $myquery = "SELECT squadra.NomeSquadra, scuderia.NomeScuderia, TPNome, TPCognome, Nazione, ValoreFinale, Foto, Colore
+        $myquery = "SELECT squadra.NomeSquadra, scuderia.NomeScuderia, TPNome, TPCognome, Nazione, ValoreBase, Foto, Colore
                     FROM utente JOIN squadra ON utente.Nick = squadra.Nick JOIN fantapartecipas ON squadra.NomeSquadra = fantapartecipas.NomeSquadra JOIN scuderia ON fantapartecipas.NomeScuderia = scuderia.NomeScuderia
                     WHERE '$nickname' = utente.Nick";
 
@@ -122,13 +122,13 @@
             $nome = $row["TPNome"];
             $cognome = $row["TPCognome"];
             $nazione = $row["Nazione"];
-            $valore = $row["ValoreFinale"];
+            $valore = $row["ValoreBase"];
             $scuderia = $row["NomeScuderia"];
             $foto = $row["Foto"];
             $colore = $row["Colore"];
         }
 
-        echo "<a href='scuderia.php' class = 'box-scuderia' style = 'border: 5px solid $colore' input type='submit'>
+        echo "<a href='scuderia.php?nomescuderia=$scuderia' class = 'box-scuderia' style = 'border: 5px solid $colore' input type='submit'>
                 <div class = 'foto-pilota'>
                     <img src='$foto' alt='$scuderia' >
                 </div>
