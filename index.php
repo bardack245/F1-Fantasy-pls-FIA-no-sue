@@ -73,7 +73,7 @@
                             </li>
                         </ul>
                         <div class='cta introtxt'>
-                            <a href='account.php' class='button' >
+                            <a href='Pagine/account.php' class='button' >
                                 $nickname
                             </a>
                         </div>

@@ -233,7 +233,7 @@
 </body>
 </html>
 
-<script src="./CSS/function.js "></script>
+<script src="../CSS/function.js"></script>
 <!--------------------------------------------------- Scrollreveal --------------------------------------------------->
 <script>
     ScrollReveal().reveal('.reveal', {

@@ -6,6 +6,31 @@
     {
         header("location: ../index.php");
     };
+
+    $nickname = $_SESSION["nickname"];
+
+    $strmodifica = "Modifica";
+	$strconferma = "Conferma";
+
+    $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
+	$modifica = false;
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pulsante_modifica"])) {
+		if($_POST["pulsante_modifica"] == $strmodifica){
+			$modifica = true;
+		} else {
+			$modifica = false;
+		}
+
+		if ($modifica == false){
+			$sql = "UPDATE utente
+					SET utente.PSW = '".$_POST["password"]."', utente.Nome = '".$_POST["nome"]."', utente.Cognome = '".$_POST["cognome"]."', utente.Email = '".$_POST["email"]."' 
+					WHERE Nick = '".$nickname."'";
+			if($conn->query($sql) === true) {
+			} else {
+				echo "Error updating record: " . $conn->error;
+			}
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +54,6 @@
 </head>
 <body onscroll="black_band()">
     <?php
-        $nickname = $_SESSION['nickname'];
 
         echo "<div class='header__container'>
                 <header>
@@ -39,6 +63,9 @@
                         </a>
                     </div>
                     <ul class='menu introtxt'>
+                        <li>
+                            <a href='Pagine/myteam.php '>My Team</a>
+                        </li>
                         <li>
                             <a href='market.php '>Market</a>
                         </li>
@@ -61,91 +88,43 @@
             <div class = 'mt3'></div>";
 
 
+        $sql = "SELECT Nick, PSW, Nome, Cognome, Email
+                FROM utente
+                WHERE Nick = '".$nickname."'";
+
+        $ris = $conn->query($sql) or die("<p>Query fallita!</p>");
         
-        $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
-        if($conn->connect_error){
-            die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
-        }
+        $row = $ris->fetch_assoc();
 
-        $myquery = "SELECT squadra.NomeSquadra, pilota.Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
-                    FROM utente JOIN squadra ON utente.Nick = squadra.Nick JOIN fantapartecipap ON squadra.NomeSquadra = fantapartecipap.Nomesquadra JOIN pilota ON fantapartecipap.Numero = pilota.Numero JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
-                    WHERE '$nickname' = utente.Nick";
-
-        $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
-
-        $numero = array();
-        $nome = array();
-        $cognome = array();
-        $nazione = array();
-        $valore = array();
-        $scuderia = array();
-        $foto = array();
-        $colore = array();
-
-        foreach($ris as $row){
-            $NomeSquadra = $row["NomeSquadra"];
-            $numero[] = $row["Numero"];
-            $nome[] = $row["NomePilota"];
-            $cognome[] = $row["CognomePilota"];
-            $nazione[] = $row["NazioneP"];
-            $valore[] = $row["ValoreFinale"];
-            $scuderia[] = $row["NomeScuderia"];
-            $foto[] = $row["Foto"];
-            $colore[] = $row["Colore"];
-        }
-
-        echo "<h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
-        for ($temp = 0; $temp < count($numero); $temp++)
-        {
-            echo "<a href='pilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
-                <div class = 'foto-pilota'>
-                    <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
-                </div>
-                <div class = 'info-pilota'>
-                    <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                    <p class='valore bigtxt'>Valore: $valore[$temp]</p>
-                    <p class='normaltxt'>$nazione[$temp]</p>
-                    <p class='normaltxt'>$scuderia[$temp]</p>
-                </div>
-                </a>
-                <br><br><br>";
-        }
-
-        $myquery = "SELECT squadra.NomeSquadra, scuderia.NomeScuderia, TPNome, TPCognome, Nazione, ValoreBase, Foto, Colore
-                    FROM utente JOIN squadra ON utente.Nick = squadra.Nick JOIN fantapartecipas ON squadra.NomeSquadra = fantapartecipas.NomeSquadra JOIN scuderia ON fantapartecipas.NomeScuderia = scuderia.NomeScuderia
-                    WHERE '$nickname' = utente.Nick";
-
-        $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
-
-        foreach($ris as $row)
-        {
-            $nome = $row["TPNome"];
-            $cognome = $row["TPCognome"];
-            $nazione = $row["Nazione"];
-            $valore = $row["ValoreBase"];
-            $scuderia = $row["NomeScuderia"];
-            $foto = $row["Foto"];
-            $colore = $row["Colore"];
-        }
-
-        echo "<a href='scuderia.php?nomescuderia=$scuderia' class = 'box-scuderia' style = 'border: 5px solid $colore' input type='submit'>
-                <div class = 'foto-pilota'>
-                    <img src='$foto' alt='$scuderia' >
-                </div>
-                <div class = 'info-scuderia'>
-                    <p class='bigtxt'>$scuderia </p>
-                    <p class='valore bigtxt'>Valore: $valore</p>
-                    <p class='normaltxt'>$nazione</p>
-                    <p class='normaltxt'>$nome $cognome</p>
-                </div>
-                
-                </a>
-                <br><br><br>";
-
-        
     ?>
 
+    <div class="login">
+        <h1 style="width: 20%; margin: auto;">Dati</h1>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
+            <table class="tab_input" >
+                <tr>
+                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $row["Nick"]; ?>" disabled="disabled"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td> <td><input type="text" name="password" value = "<?php echo $row["PSW"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                </tr>
+                <tr>
+                    <td>Nome:</td> <td><input type="text" name="nome" value = "<?php echo $row["Nome"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                </tr>
+                <tr>
+                    <td>Cognome:</td> <td><input type="text" name="cognome" value = "<?php echo $row["Cognome"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                </tr>
+                <tr>
+                    <td>Email:</td> <td><input type="email" name="email" value = "<?php echo $row["Email"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                </tr>
+            </table>
+            <p style="width: 20%; margin: auto;">
+                <input type="submit" name="pulsante_modifica" value="<?php if($modifica==false) echo $strmodifica; else echo $strconferma; ?>">
+            </p>
+        </form>
+    </div>
 
+    
     <!------------------------------------------------- Footer ------------------------------------------------->
     <footer class="mt3 mst3">
         <canvas id="canvas1">
@@ -172,7 +151,7 @@
 </body>
 </html>
 
-<script src="../CSS/function.js"></script>
+<script src="../CSS/function.js "></script>
 <!--------------------------------------------------- Scrollreveal --------------------------------------------------->
 <script>
     ScrollReveal().reveal('.reveal', {
@@ -183,3 +162,6 @@
 </script>
 
 <!--Fatto da Varisco e Germanò-->
+
+
+    

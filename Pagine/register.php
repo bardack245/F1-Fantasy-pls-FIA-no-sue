@@ -109,9 +109,9 @@
         
                             echo "Registrazione effettuata con successo!<br>sarai ridirezionato alla home tra 2 secondi.";
                             header('Refresh: 2; URL=../index.php');
-                        } else {
-                                echo "Non è stato possibile effettuare la registrazione per il seguente motivo: " . $conn->error;
-                        }
+                    } else {
+                            echo "Non è stato possibile effettuare la registrazione per il seguente motivo: " . $conn->error;
+                    }
 
                 }
             }
@@ -153,7 +153,7 @@
 
 </html>
 
-<script src="./CSS/function.js "></script>
+<script src="../CSS/function.js "></script>
 <!--------------------------------------------------- Scrollreveal --------------------------------------------------->
 <script>
     ScrollReveal().reveal('.reveal', {
