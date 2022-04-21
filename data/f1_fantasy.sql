@@ -22,7 +22,7 @@ USE `f1_fantasy`;
 DROP TABLE IF EXISTS `fantapartecipap`;
 CREATE TABLE IF NOT EXISTS `fantapartecipap` (
   `Nomesquadra` char(50) NOT NULL,
-  `Numero` int(11) NOT NULL,
+  `Numero` int(11) DEFAULT NULL,
   KEY `FK_fantapartecipap_pilota` (`Numero`),
   KEY `Nomesquadra` (`Nomesquadra`),
   CONSTRAINT `FK_fantapartecipap_pilota` FOREIGN KEY (`Numero`) REFERENCES `pilota` (`Numero`) ON UPDATE CASCADE,
@@ -39,17 +39,17 @@ INSERT INTO `fantapartecipap` (`Nomesquadra`, `Numero`) VALUES
 	('Scuderia Sburari', 11),
 	('Scuderia Sburari', 10),
 	('Sbureria Ferrari', 16),
-	('Sbureria Ferrari', 55),
-	('Sbureria Ferrari', 11),
-	('Sbureria Ferrari', 7),
-	('Sbureria Ferrari', 9);
+	('Sbureria Ferrari', NULL),
+	('Sbureria Ferrari', NULL),
+	('Sbureria Ferrari', NULL),
+	('Sbureria Ferrari', NULL);
 /*!40000 ALTER TABLE `fantapartecipap` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.fantapartecipas
 DROP TABLE IF EXISTS `fantapartecipas`;
 CREATE TABLE IF NOT EXISTS `fantapartecipas` (
   `NomeSquadra` char(50) NOT NULL,
-  `NomeScuderia` char(50) NOT NULL,
+  `NomeScuderia` char(50) DEFAULT NULL,
   KEY `FK_fantapartecipas_scuderia` (`NomeScuderia`),
   KEY `NomeSquadra` (`NomeSquadra`),
   CONSTRAINT `FK_fantapartecipas_scuderia` FOREIGN KEY (`NomeScuderia`) REFERENCES `scuderia` (`NomeScuderia`) ON UPDATE CASCADE,
@@ -579,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `pilota` (
   CONSTRAINT `FK_pilota_scuderia` FOREIGN KEY (`NomeScuderia`) REFERENCES `scuderia` (`NomeScuderia`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dump dei dati della tabella f1_fantasy.pilota: ~14 rows (circa)
+-- Dump dei dati della tabella f1_fantasy.pilota: ~20 rows (circa)
 DELETE FROM `pilota`;
 /*!40000 ALTER TABLE `pilota` DISABLE KEYS */;
 INSERT INTO `pilota` (`Numero`, `CognomePilota`, `NomePilota`, `NazioneP`, `PunteggioFinale`, `ValoreIniziale`, `ValoreFinale`, `Foto`, `NomeScuderia`) VALUES
@@ -645,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `squadra` (
   CONSTRAINT `FK_squadra_utente` FOREIGN KEY (`Nick`) REFERENCES `utente` (`Nick`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dump dei dati della tabella f1_fantasy.squadra: ~2 rows (circa)
+-- Dump dei dati della tabella f1_fantasy.squadra: ~3 rows (circa)
 DELETE FROM `squadra`;
 /*!40000 ALTER TABLE `squadra` DISABLE KEYS */;
 INSERT INTO `squadra` (`NomeSquadra`, `Nick`) VALUES
@@ -664,11 +664,12 @@ CREATE TABLE IF NOT EXISTS `utente` (
   PRIMARY KEY (`Nick`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dump dei dati della tabella f1_fantasy.utente: ~2 rows (circa)
+-- Dump dei dati della tabella f1_fantasy.utente: ~3 rows (circa)
 DELETE FROM `utente`;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
 INSERT INTO `utente` (`Nick`, `Nome`, `Cognome`, `Email`, `PSW`) VALUES
 	('Bardack', 'Marco', 'Varisco', 'marco.varisco@gmail.com', 'Admin'),
+	('sus', 'sus', 'sus', 'sus@gmail.com', 'sus'),
 	('yuukigerma', 'Matteo', 'Germanò', 'matteo.germano@gmail.com', 'Admin');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 

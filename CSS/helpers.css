@@ -25,18 +25,23 @@
 
 .smalltxt {
     font-size: 14px;
+    line-height: 100%;
 }
 
 .normaltxt {
     font-size: 26px;
+    line-height: 100%;
 }
 
 .medtxt {
     font-size: 40px;
+    line-height: 100%;
 }
 
 .bigtxt {
     font-size: 60px;
+    line-height: 100%;
+    margin: 5% 0;
 }
 
 .title{

@@ -1,6 +1,20 @@
 <?php
     session_start();
     require('../data/connessione_db.php');
+
+    $nickname = $_SESSION['nickname'];
+
+    $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
+
+    $myquery = "SELECT NomeSquadra
+                FROM squadra
+                WHERE Nick = '$nickname'";
+
+    $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
+
+    foreach($ris as $row){
+        $NomeSquadra = $row["NomeSquadra"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +60,6 @@
                 </div>";
         } else 
         {
-            $nickname = $_SESSION['nickname'];
 
             echo "<div class='header__container'>
                     <header>
@@ -90,7 +103,10 @@
         }
 
         $myquery = "SELECT Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
-                    FROM pilota JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia";
+                    FROM pilota JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
+                    WHERE Numero NOT IN (SELECT Numero
+                                            FROM fantapartecipap
+                                            WHERE Nomesquadra = '$NomeSquadra')";
 
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
 
@@ -117,7 +133,7 @@
 
         for ($temp = 0; $temp < count($numero); $temp++)
         {
-            echo "<a href='pilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
+            echo "<a href='aggiungipilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
                 <div class = 'foto-pilota'>
                     <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
                 </div>
@@ -133,67 +149,6 @@
                 <br><br><br>";
         }
     ?>
-
-    <p class="titolo bigtxt">SCUDERIE:</p>
-
-    <?php
-        $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
-        if($conn->connect_error){
-            die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
-        }
-
-        $myquery = "SELECT NomeScuderia, TPNome, TPCognome, Nazione, ValoreBase, Foto, Colore
-        FROM scuderia";
-
-        $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
-
-        $nome = array();
-        $cognome = array();
-        $nazione = array();
-        $valore = array();
-        $scuderia = array();
-        $foto = array();
-        $colore = array();
-
-        while($row = $ris->fetch_assoc())
-        {
-            $nome[] = $row["TPNome"];
-            $cognome[] = $row["TPCognome"];
-            $nazione[] = $row["Nazione"];
-            $valore[] = $row["ValoreBase"];
-            $scuderia[] = $row["NomeScuderia"];
-            $foto[] = $row["Foto"];
-            $colore[] = $row["Colore"];
-        }
-
-        for ($temp = 0; $temp < count($scuderia); $temp++)
-        {
-            echo "<a href='scuderia.php?nomescuderia=$scuderia[$temp]' class = 'box-scuderia' style = 'border: 5px solid $colore[$temp]' input type='submit'>
-                <div class = 'foto-pilota'>
-                    <img src='$foto[$temp]' alt='$scuderia[$temp]' >
-                </div>
-                <div class = 'info-scuderia'>
-                    <p class='bigtxt'>$scuderia[$temp] </p>
-                    <p class='normaltxt'>$nazione[$temp]</p>
-                    <p class='normaltxt'>$nome[$temp] $cognome[$temp]</p>
-                </div>
-                <div class = 'info-scuderia'>
-                    <p class='bigtxt'>Valore: $valore[$temp]</p>
-                </div>
-                
-                </a>
-                <br><br><br>";
-        }
-
-    ?>
-
-
-
-
-
-
-
-
 
 
     <!------------------------------------------------- Footer ------------------------------------------------->

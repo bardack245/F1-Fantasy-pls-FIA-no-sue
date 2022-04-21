@@ -6,6 +6,67 @@
     {
         header("location: ../index.php");
     };
+
+    $nickname = $_SESSION["nickname"];
+
+    $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pulsante_inserisci"])) {
+        $NomeSquadra = $_POST["nomesquadra"];
+        $CreaSquadra = "INSERT INTO squadra (NomeSquadra) VALUES
+                        ('$NomeSquadra')";
+
+        $CreaSquadra2 = "UPDATE squadra
+                        SET Nick = '$nickname'
+                        WHERE NomeSquadra = '$NomeSquadra'";
+
+        for($temp = 0; $temp < 5; $temp++){
+            $CreaSquadra3 = "INSERT INTO `fantapartecipap` (`NomeSquadra`, `Numero`) VALUES
+                            ('$NomeSquadra', NULL)";
+            
+            if($conn->query($CreaSquadra3) === true) {
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
+        }
+
+		if($conn->query($CreaSquadra) === true && $conn->query($CreaSquadra2) === true) {
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+    }
+
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminapilota"])) {
+
+        $numeropilota = $_POST["numero"];
+        $NomeSquadra = $_POST["nomesquadra"];
+
+        $EliminaPilota = "UPDATE fantapartecipap
+                            SET Numero = NULL
+                            WHERE Numero = '$numeropilota' AND Nomesquadra = '$NomeSquadra'";
+
+        if($conn->query($EliminaPilota) === true) {
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eliminascuderia"])) {
+
+        $scuderia = $_POST["scuderia"];
+        $NomeSquadra = $_POST["nomesquadra"];
+
+        $EliminaScuderia = "UPDATE fantapartecipas
+                            SET NomeScuderia = NULL
+                            WHERE NomeScuderia = '$scuderia' AND Nomesquadra = '$NomeSquadra'";
+
+        if($conn->query($EliminaScuderia) === true) {
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
+    }
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +128,7 @@
             die("<p>Connessione al server non riuscita: ".$conn->connect_error."</p>");
         }
 
-        $myquery = "SELECT squadra.NomeSquadra, pilota.Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
+        $myquery = "SELECT squadra.NomeSquadra, fantapartecipap.Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
                     FROM utente JOIN squadra ON utente.Nick = squadra.Nick JOIN fantapartecipap ON squadra.NomeSquadra = fantapartecipap.Nomesquadra JOIN pilota ON fantapartecipap.Numero = pilota.Numero JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
                     WHERE '$nickname' = utente.Nick";
 
@@ -94,21 +155,65 @@
             $colore[] = $row["Colore"];
         }
 
-        echo "<h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
+        $sql = "SELECT squadra.NomeSquadra
+                FROM squadra
+                WHERE '$nickname' = Nick";
+
+        $ris = $conn->query($sql) or die("<p>Query fallita! ".$conn->error."</p>");
+
+        foreach($ris as $row){
+            $NomeSquadra = $row["NomeSquadra"];
+        }
+
+        if($NomeSquadra != NULL){
+            echo "<h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
+        } else {
+            echo "<h1 style='width: 20%; margin: auto;'>Nome della squadra:</h1>
+                <form action=\"$_SERVER[PHP_SELF]\" method='post' style='width: 75%; margin: auto;'>
+                    <table class='tab_input'>
+                        <tr>
+                            <td>Nome Squadra:</td> <td><input type='text' name='nomesquadra' required></td>
+                        </tr>
+                    </table>
+                    <p style='width: 20%; margin: auto;'>
+                        <input type='submit' name='pulsante_inserisci' value='Inserisci'>
+                    </p>
+                </form>
+                <div class = 'mt1'></div>";
+        }
+        
+
+        for ($temp = 0; $temp < 5-count($numero); $temp++){
+            echo "<a href='piloti.php' class = 'box-pilota' input type='submit'>
+            <p class = 'normaltxt' style = 'text-align: center'>Aggiungi pilota</p> <br>
+            <p class = 'bigtxt' style = 'text-align: center'>+</p>
+            </a>
+            <br><br><br>";    
+        }
+
         for ($temp = 0; $temp < count($numero); $temp++)
         {
-            echo "<a href='pilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
-                <div class = 'foto-pilota'>
-                    <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
-                </div>
-                <div class = 'info-pilota'>
-                    <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                    <p class='valore bigtxt'>Valore: $valore[$temp]</p>
-                    <p class='normaltxt'>$nazione[$temp]</p>
-                    <p class='normaltxt'>$scuderia[$temp]</p>
-                </div>
-                </a>
-                <br><br><br>";
+            echo "<div class = 'box-pilota' style = 'background-color: $colore[$temp]'>
+            <div class = 'foto-pilota'>
+                <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
+            </div>
+            <div class = 'info-pilota'>
+                <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
+                <p class='normaltxt'>$nazione[$temp]</p>
+                <p class='normaltxt'>$scuderia[$temp]</p>
+            </div>
+            <div class = 'info-pilota'>
+                <p class='bigtxt'>Valore: $valore[$temp]</p>
+            </div>
+            <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
+                <p>
+                    <input type='submit' name='eliminapilota' value='X'>
+                    <input type='hidden' name='numero' value='$numero[$temp]'>
+                    <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
+                </p>
+            </form>
+            </div>
+            <br><br><br>";    
         }
 
         $myquery = "SELECT squadra.NomeSquadra, scuderia.NomeScuderia, TPNome, TPCognome, Nazione, ValoreBase, Foto, Colore
@@ -117,6 +222,7 @@
 
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
 
+        $scuderia = NULL;
         foreach($ris as $row)
         {
             $nome = $row["TPNome"];
@@ -128,20 +234,36 @@
             $colore = $row["Colore"];
         }
 
-        echo "<a href='scuderia.php?nomescuderia=$scuderia' class = 'box-scuderia' style = 'border: 5px solid $colore' input type='submit'>
+        if($scuderia != NULL){
+            echo "<div class = 'box-scuderia' style = 'border: 5px solid $colore'>
                 <div class = 'foto-pilota'>
                     <img src='$foto' alt='$scuderia' >
                 </div>
                 <div class = 'info-scuderia'>
                     <p class='bigtxt'>$scuderia </p>
-                    <p class='valore bigtxt'>Valore: $valore</p>
                     <p class='normaltxt'>$nazione</p>
                     <p class='normaltxt'>$nome $cognome</p>
                 </div>
-                
+                <div class = 'info-scuderia'>
+                    <p class='bigtxt'>Valore: $valore</p>
+                </div>
+                <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
+                    <p>
+                        <input type='submit' name='eliminascuderia' value='X'>
+                        <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
+                        <input type='hidden' name='scuderia' value='$scuderia'>
+                    </p>
+                </form>
+                </div>
+                <br><br><br>";
+        } else{
+            echo "<a href='scuderie.php' class = 'box-scuderia' style = 'border: 5px solid black' input type='submit'>
+                <p class = 'normaltxt' style = 'text-align: center'>Aggiungi scuderia</p> <br>
+                <p class = 'bigtxt' style = 'text-align: center'>+</p>
                 </a>
                 <br><br><br>";
-
+        }
+        
         
     ?>
 

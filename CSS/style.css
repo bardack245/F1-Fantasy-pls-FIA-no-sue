@@ -131,11 +131,13 @@ header {
 
 .info-pilota{
     display: block;
+    margin-right: 20%;
 }
 
 .info-scuderia{
     display: block;
     padding-left: 50px;
+    margin-right: 20%;
 }
 
 .valore{

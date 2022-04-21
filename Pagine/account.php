@@ -64,7 +64,7 @@
                     </div>
                     <ul class='menu introtxt'>
                         <li>
-                            <a href='Pagine/myteam.php '>My Team</a>
+                            <a href='myteam.php '>My Team</a>
                         </li>
                         <li>
                             <a href='market.php '>Market</a>
