@@ -53,50 +53,7 @@
     <title>My Team</title>
 </head>
 <body onscroll="black_band()">
-    <?php
-
-        echo "<div class='header__container'>
-                <header>
-                    <div class='logo'>
-                        <a href='../index.php'>
-                            <img src='../Media/Logo.svg ' alt='logo image '>
-                        </a>
-                    </div>
-                    <ul class='menu introtxt'>
-                        <li>
-                            <a href='myteam.php '>My Team</a>
-                        </li>
-                        <li>
-                            <a href='market.php '>Market</a>
-                        </li>
-                    </ul>
-                    <div class='cta introtxt'>
-                        <a href='account.php' class='button' >
-                            $nickname
-                        </a>
-                    </div>
-                    <div class='cta introtxt '>
-                        <a href='logout.php' class='button' >LOGOUT</a>
-                    </div>
-                    <div class='hamburger' onclick='showhide() '>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </header>
-            </div>
-            <div class = 'mt3'></div>";
-
-
-        $sql = "SELECT Nick, PSW, Nome, Cognome, Email
-                FROM utente
-                WHERE Nick = '".$nickname."'";
-
-        $ris = $conn->query($sql) or die("<p>Query fallita!</p>");
-        
-        $row = $ris->fetch_assoc();
-
-    ?>
+    <?php require("header.php") ?>
 
     <div class="login">
         <h1 style="width: 20%; margin: auto;">Dati</h1>
@@ -125,27 +82,7 @@
     </div>
 
     
-    <!------------------------------------------------- Footer ------------------------------------------------->
-    <footer class="mt3 mst3">
-        <canvas id="canvas1">
-        </canvas>
-        <div class="creator__grid">
-            <div class="creator__column">
-                <div>
-                    <a href="https://github.com/bardack245" target="_blank">
-                        <h3 class="introtxt tw">Varisco Marco</h3>
-                    </a>
-                </div>
-            </div>
-            <div class="creator__column">
-                <div>
-                    <a href="https://github.com/yuukigerma" target="_blank">
-                        <h3 class="introtxt tw">Germanò Matteo</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include("footer.php") ?>
 
 
 </body>

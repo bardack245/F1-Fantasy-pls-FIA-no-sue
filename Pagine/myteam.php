@@ -89,37 +89,7 @@
     <title>My Team</title>
 </head>
 <body onscroll="black_band()">
-    <?php
-        $nickname = $_SESSION['nickname'];
-
-        echo "<div class='header__container'>
-                <header>
-                    <div class='logo'>
-                        <a href='../index.php'>
-                            <img src='../Media/Logo.svg ' alt='logo image '>
-                        </a>
-                    </div>
-                    <ul class='menu introtxt'>
-                        <li>
-                            <a href='market.php '>Market</a>
-                        </li>
-                    </ul>
-                    <div class='cta introtxt'>
-                        <a href='account.php' class='button' >
-                            $nickname
-                        </a>
-                    </div>
-                    <div class='cta introtxt '>
-                        <a href='logout.php' class='button' >LOGOUT</a>
-                    </div>
-                    <div class='hamburger' onclick='showhide() '>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </header>
-            </div>
-            <div class = 'mt3'></div>";
+    <?php require("header.php");
 
 
         
@@ -203,7 +173,7 @@
                 <p class='normaltxt'>$scuderia[$temp]</p>
             </div>
             <div class = 'info-pilota'>
-                <p class='bigtxt'>Valore: $valore[$temp]</p>
+                <p class='bigtxt'>Valore: $valore[$temp] M</p>
             </div>
             <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
                 <p>
@@ -245,7 +215,7 @@
                     <p class='normaltxt'>$nome $cognome</p>
                 </div>
                 <div class = 'info-scuderia'>
-                    <p class='bigtxt'>Valore: $valore</p>
+                    <p class='bigtxt'>Valore: $valore M</p>
                 </div>
                 <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
                     <p>
@@ -268,27 +238,7 @@
     ?>
 
 
-    <!------------------------------------------------- Footer ------------------------------------------------->
-    <footer class="mt3 mst3">
-        <canvas id="canvas1">
-        </canvas>
-        <div class="creator__grid">
-            <div class="creator__column">
-                <div>
-                    <a href="https://github.com/bardack245" target="_blank">
-                        <h3 class="introtxt tw">Varisco Marco</h3>
-                    </a>
-                </div>
-            </div>
-            <div class="creator__column">
-                <div>
-                    <a href="https://github.com/yuukigerma" target="_blank">
-                        <h3 class="introtxt tw">Germanò Matteo</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include("footer.php") ?>
 
 
 </body>

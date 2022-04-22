@@ -23,62 +23,7 @@
     <title>Market</title>
 </head>
 <body onscroll="black_band()">
-    <?php
-        if(!isset($_SESSION["nickname"]))
-        {
-            echo "<div class='header__container'>
-                    <header>
-                        <div class='logo'>
-                            <a href='../index.php'>
-                                <img src='../Media/Logo.svg ' alt='logo image '>
-                            </a>
-                        </div>
-                        <ul class='menu introtxt'></ul>
-                        <div class='cta introtxt '>
-                            <a href='login.php' class='button' >LOGIN</a>
-                        </div>
-                        <div class='hamburger' onclick='showhide() '>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </header>
-                </div>";
-        } else 
-        {
-            $nickname = $_SESSION['nickname'];
-
-            echo "<div class='header__container'>
-                    <header>
-                        <div class='logo'>
-                            <a href='../index.php'>
-                                <img src='../Media/Logo.svg ' alt='logo image '>
-                            </a>
-                        </div>
-                        <ul class='menu introtxt'>
-                            <li>
-                                <a href='myteam.php '>My Team</a>
-                            </li>
-                        </ul>
-                        <div class='cta introtxt'>
-                            <a href='account.php' class='button' >
-                                $nickname
-                            </a>
-                        </div>
-                        <div class='cta introtxt '>
-                            <a href='logout.php' class='button' >LOGOUT</a>
-                        </div>
-                        <div class='hamburger' onclick='showhide() '>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </header>
-                </div>";
-        }
-    
-    ?>
-
+    <?php require("header.php") ?>
 
     <div class = 'mt3'></div>
     <p class="titolo bigtxt">SCUDERIE:</p>
@@ -135,35 +80,7 @@
     ?>
 
 
-
-
-
-
-
-
-
-
-    <!------------------------------------------------- Footer ------------------------------------------------->
-    <footer class="mt3 mst3">
-        <canvas id="canvas1">
-        </canvas>
-        <div class="creator__grid">
-            <div class="creator__column">
-                <div>
-                    <a href="https://github.com/bardack245" target="_blank">
-                        <h3 class="introtxt tw">Varisco Marco</h3>
-                    </a>
-                </div>
-            </div>
-            <div class="creator__column">
-                <div>
-                    <a href="https://github.com/yuukigerma" target="_blank">
-                        <h3 class="introtxt tw">Germanò Matteo</h3>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include("footer.php") ?>
 
 
 </body>
