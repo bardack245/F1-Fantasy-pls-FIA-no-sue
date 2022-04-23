@@ -17,9 +17,8 @@
         $NomeSquadra = $row["NomeSquadra"];
     }
 
-    $AggiungiScuderia = "UPDATE fantapartecipas
-                            SET NomeScuderia = '$NomeScuderia'
-                            WHERE NomeSquadra = '$NomeSquadra'";
+    $AggiungiScuderia = "INSERT INTO fantapartecipas (NomeSquadra, NomeScuderia) VALUES
+                        ('$NomeSquadra', '$NomeScuderia')";
 
     if($conn->query($AggiungiScuderia) === true) {
     } else {

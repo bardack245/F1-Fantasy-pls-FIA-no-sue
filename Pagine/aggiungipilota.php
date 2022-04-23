@@ -17,13 +17,24 @@
         $NomeSquadra = $row["NomeSquadra"];
     }
 
-    $AggiungiPilota = "UPDATE fantapartecipap
-                            SET Numero = '$Numero'
-                            WHERE Numero = NULL AND NomeSquadra = '$NomeSquadra'";
+    $diostronzo = "SELECT count(Numero) AS NumeroPiloti
+                    FROM fantapartecipap
+                    WHERE NomeSquadra = '$NomeSquadra'";
 
-    if($conn->query($AggiungiPilota) === true) {
-    } else {
-        echo "Error updating record: " . $conn->error;
+    $ris = $conn->query($diostronzo) or die("<p>Query fallita! ".$conn->error."</p>");
+
+    foreach($ris as $row){
+        $NumeroPiloti = $row["NumeroPiloti"];
+    }
+
+    if ($NumeroPiloti < 5){
+        $AggiungiPilota = "INSERT INTO fantapartecipap (NomeSquadra, Numero) VALUES
+                            ('$NomeSquadra', '$Numero')";
+        
+        if($conn->query($AggiungiPilota) === true) {
+        } else {
+            echo "Error updating record: " . $conn->error;
+        }
     }
 
     header("location: myteam.php")

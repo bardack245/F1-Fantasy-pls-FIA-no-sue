@@ -16,25 +16,21 @@
         $NomeSquadra = $_POST["nomesquadra"];
         $CreaSquadra = "INSERT INTO squadra (NomeSquadra) VALUES
                         ('$NomeSquadra')";
+        
+        if($conn->query($CreaSquadra) === true) {
+		} else {
+			echo "Error updating record: " . $conn->error;
+		}
 
         $CreaSquadra2 = "UPDATE squadra
                         SET Nick = '$nickname'
                         WHERE NomeSquadra = '$NomeSquadra'";
 
-        for($temp = 0; $temp < 5; $temp++){
-            $CreaSquadra3 = "INSERT INTO `fantapartecipap` (`NomeSquadra`, `Numero`) VALUES
-                            ('$NomeSquadra', NULL)";
-            
-            if($conn->query($CreaSquadra3) === true) {
-            } else {
-                echo "Error updating record: " . $conn->error;
-            }
+        if($conn->query($CreaSquadra2) === true) {
+        } else {
+            echo "Error updating record: " . $conn->error;
         }
-
-		if($conn->query($CreaSquadra) === true && $conn->query($CreaSquadra2) === true) {
-		} else {
-			echo "Error updating record: " . $conn->error;
-		}
+		
     }
 
 
@@ -43,8 +39,7 @@
         $numeropilota = $_POST["numero"];
         $NomeSquadra = $_POST["nomesquadra"];
 
-        $EliminaPilota = "UPDATE fantapartecipap
-                            SET Numero = NULL
+        $EliminaPilota = "DELETE FROM fantapartecipap
                             WHERE Numero = '$numeropilota' AND Nomesquadra = '$NomeSquadra'";
 
         if($conn->query($EliminaPilota) === true) {
@@ -58,8 +53,7 @@
         $scuderia = $_POST["scuderia"];
         $NomeSquadra = $_POST["nomesquadra"];
 
-        $EliminaScuderia = "UPDATE fantapartecipas
-                            SET NomeScuderia = NULL
+        $EliminaScuderia = "DELETE FROM fantapartecipas
                             WHERE NomeScuderia = '$scuderia' AND Nomesquadra = '$NomeSquadra'";
 
         if($conn->query($EliminaScuderia) === true) {
@@ -123,6 +117,7 @@
             $scuderia[] = $row["NomeScuderia"];
             $foto[] = $row["Foto"];
             $colore[] = $row["Colore"];
+
         }
 
         $sql = "SELECT squadra.NomeSquadra
@@ -131,14 +126,17 @@
 
         $ris = $conn->query($sql) or die("<p>Query fallita! ".$conn->error."</p>");
 
+        $NomeSquadra = NULL;
         foreach($ris as $row){
             $NomeSquadra = $row["NomeSquadra"];
         }
 
         if($NomeSquadra != NULL){
-            echo "<h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
+            echo "<div class = 'mt3'</div>
+                <h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
         } else {
-            echo "<h1 style='width: 20%; margin: auto;'>Nome della squadra:</h1>
+            echo "<div class = 'mt3'</div>
+                <h1 style='width: 20%; margin: auto;'>Nome della squadra:</h1>
                 <form action=\"$_SERVER[PHP_SELF]\" method='post' style='width: 75%; margin: auto;'>
                     <table class='tab_input'>
                         <tr>
@@ -153,7 +151,7 @@
         }
         
 
-        for ($temp = 0; $temp < 5-count($numero); $temp++){
+        for ($temp = count($numero); $temp < 5; $temp++){
             echo "<a href='piloti.php' class = 'box-pilota' input type='submit'>
             <p class = 'normaltxt' style = 'text-align: center'>Aggiungi pilota</p> <br>
             <p class = 'bigtxt' style = 'text-align: center'>+</p>

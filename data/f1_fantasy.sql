@@ -29,8 +29,7 @@ CREATE TABLE IF NOT EXISTS `fantapartecipap` (
   CONSTRAINT `FK_fantapartecipap_squadra` FOREIGN KEY (`Nomesquadra`) REFERENCES `squadra` (`NomeSquadra`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dump dei dati della tabella f1_fantasy.fantapartecipap: ~10 rows (circa)
-DELETE FROM `fantapartecipap`;
+-- Dump dei dati della tabella f1_fantasy.fantapartecipap: ~7 rows (circa)
 /*!40000 ALTER TABLE `fantapartecipap` DISABLE KEYS */;
 INSERT INTO `fantapartecipap` (`Nomesquadra`, `Numero`) VALUES
 	('Scuderia Sburari', 16),
@@ -38,11 +37,11 @@ INSERT INTO `fantapartecipap` (`Nomesquadra`, `Numero`) VALUES
 	('Scuderia Sburari', 7),
 	('Scuderia Sburari', 11),
 	('Scuderia Sburari', 10),
+	('Sbureria Ferrari', 9),
 	('Sbureria Ferrari', 16),
-	('Sbureria Ferrari', NULL),
-	('Sbureria Ferrari', NULL),
-	('Sbureria Ferrari', NULL),
-	('Sbureria Ferrari', NULL);
+	('Sbureria Ferrari', 55),
+	('Sbureria Ferrari', 11),
+	('Sbureria Ferrari', 14);
 /*!40000 ALTER TABLE `fantapartecipap` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.fantapartecipas
@@ -56,12 +55,11 @@ CREATE TABLE IF NOT EXISTS `fantapartecipas` (
   CONSTRAINT `FK_fantapartecipas_squadra` FOREIGN KEY (`NomeSquadra`) REFERENCES `squadra` (`NomeSquadra`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dump dei dati della tabella f1_fantasy.fantapartecipas: ~2 rows (circa)
-DELETE FROM `fantapartecipas`;
+-- Dump dei dati della tabella f1_fantasy.fantapartecipas: ~3 rows (circa)
 /*!40000 ALTER TABLE `fantapartecipas` DISABLE KEYS */;
 INSERT INTO `fantapartecipas` (`NomeSquadra`, `NomeScuderia`) VALUES
-	('Sbureria Ferrari', 'Scuderia Ferrari'),
-	('Scuderia Sburari', 'Scuderia Ferrari');
+	('Scuderia Sburari', 'Scuderia Ferrari'),
+	('Sbureria Ferrari', 'Scuderia Ferrari');
 /*!40000 ALTER TABLE `fantapartecipas` ENABLE KEYS */;
 
 -- Dump della struttura di tabella f1_fantasy.gara
@@ -74,7 +72,6 @@ CREATE TABLE IF NOT EXISTS `gara` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.gara: ~22 rows (circa)
-DELETE FROM `gara`;
 /*!40000 ALTER TABLE `gara` DISABLE KEYS */;
 INSERT INTO `gara` (`Data`, `Autodromo`, `Luogo`) VALUES
 	('2021-03-28', 'Bahrain International Circuit', 'Bahrain'),
@@ -117,7 +114,6 @@ CREATE TABLE IF NOT EXISTS `gareggia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.gareggia: ~440 rows (circa)
-DELETE FROM `gareggia`;
 /*!40000 ALTER TABLE `gareggia` DISABLE KEYS */;
 INSERT INTO `gareggia` (`Numero`, `Data`, `Qualifica`, `PosFinale`, `Punteggio`, `Varvalore`) VALUES
 	(33, '2021-03-28', 1, 2, 29, 30.7),
@@ -580,7 +576,6 @@ CREATE TABLE IF NOT EXISTS `pilota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.pilota: ~20 rows (circa)
-DELETE FROM `pilota`;
 /*!40000 ALTER TABLE `pilota` DISABLE KEYS */;
 INSERT INTO `pilota` (`Numero`, `CognomePilota`, `NomePilota`, `NazioneP`, `PunteggioFinale`, `ValoreIniziale`, `ValoreFinale`, `Foto`, `NomeScuderia`) VALUES
 	(3, 'Ricciardo', 'Daniel', 'Australia', 238, 14.5, 14.6, '../Media/Piloti/Ricciardo.png', 'McLaren F1 Team'),
@@ -620,7 +615,6 @@ CREATE TABLE IF NOT EXISTS `scuderia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.scuderia: ~10 rows (circa)
-DELETE FROM `scuderia`;
 /*!40000 ALTER TABLE `scuderia` DISABLE KEYS */;
 INSERT INTO `scuderia` (`NomeScuderia`, `PunteggioF`, `TPNome`, `TPCognome`, `Nazione`, `ValoreBase`, `Foto`, `Colore`) VALUES
 	('Alfa Romeo F1 Team ORLEN', 106.0, 'Frédéric', 'Vasseur', 'Svizzera', 8.0, '../Media/Scuderie/Alfa_Romeo.png', '#9a142e'),
@@ -646,7 +640,6 @@ CREATE TABLE IF NOT EXISTS `squadra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.squadra: ~3 rows (circa)
-DELETE FROM `squadra`;
 /*!40000 ALTER TABLE `squadra` DISABLE KEYS */;
 INSERT INTO `squadra` (`NomeSquadra`, `Nick`) VALUES
 	('Scuderia Sburari', 'Bardack'),
@@ -665,11 +658,9 @@ CREATE TABLE IF NOT EXISTS `utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella f1_fantasy.utente: ~3 rows (circa)
-DELETE FROM `utente`;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
 INSERT INTO `utente` (`Nick`, `Nome`, `Cognome`, `Email`, `PSW`) VALUES
 	('Bardack', 'Marco', 'Varisco', 'marco.varisco@gmail.com', 'Admin'),
-	('sus', 'sus', 'sus', 'sus@gmail.com', 'sus'),
 	('yuukigerma', 'Matteo', 'Germanò', 'matteo.germano@gmail.com', 'Admin');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 

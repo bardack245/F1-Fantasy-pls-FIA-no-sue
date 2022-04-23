@@ -51,8 +51,8 @@
 
         $myquery = "SELECT Numero, NomePilota, CognomePilota, NazioneP, pilota.ValoreFinale, pilota.NomeScuderia, pilota.Foto, Colore
                     FROM pilota JOIN scuderia ON pilota.NomeScuderia = scuderia.NomeScuderia
-                    WHERE Numero NOT IN (SELECT Numero
-                                            FROM fantapartecipap
+                    WHERE Numero NOT IN (SELECT pilota.Numero
+                                            FROM pilota JOIN fantapartecipap on pilota.Numero = fantapartecipap.Numero
                                             WHERE Nomesquadra = '$NomeSquadra')";
 
         $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
