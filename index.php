@@ -91,10 +91,79 @@
     
     ?>
 
-    
+    <!------------------------------------------------- Content ------------------------------------------------->
+    <div class="mt3"></div>
+        <div>
+            <h1>
+                Benvenuto nel sito ufficiale dell'F1 Fantasy!
+            </h1>
 
+            <h3>
+                Il gioco per appassionati di F1!<br>
+            </h3>
+            <h2>
+                ISTRUZIONI
+            </h2>
+            <P>
+                Forma un indomito team per distruggere gli avversari e dominare il campionato!<br>
+                Il team deve essere formato da cinque piloti ed una scuderia, scelti tra il circus.<br>
+            </P>
+            <h2>
+                VALORE
+            </h2>
+            <p>
+                Ogni giocatore e scuderia ha un valore di acquisto. Questo valore varia durante la stagione in base ai risultati delle prestazioni.<br>
+            </p>
+            <h2>
+                PUNTEGGIO
+            </h2>
+            <p>
+                Ogni membro del tuo team ottiene un punteggio in base ai risultati del weekend di gara!<br>
+            </p>
+            <h3>
+                Punteggio Piloti
+            </h3>
+            <p>
+                Il punteggio dei piloti viene cacolato come il doppio della differenza tra la posizone finale e quella in griglia. Inoltre vengono aggiunti bonus per la posizione di arrivo e di qualifica e l'arrivo prima del compagno di scuderia.<br>
+            </p>
+            <h3>
+                Punteggio Scuderia  
+            </h3>
+            <p>
+                Il punteggio della scuderia viene calcolato come media dei punteggi dei due piloti.<br>
+            </p>
+            <h2>
+                VINCERE
+            </h2>
+            <p>
+                e vincerete solamente avendo più punti degli altri!
+            </p>
+
+        </div>
     
-    <?php include("Pagine/footer.php") ?>
+    <!------------------------------------------------- Footer ------------------------------------------------->
+    <footer class="mt3 mst3">
+        <canvas id="canvas1">
+        </canvas>
+        <div class="creator__grid">
+            <div class="creator__column">
+                <div>
+                    <a href="https://github.com/bardack245" target="_blank">
+                        <h3 class="introtxt tw">Varisco Marco</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="creator__column">
+                <div>
+                    <a href="https://github.com/yuukigerma" target="_blank">
+                        <h3 class="introtxt tw">Germanò Matteo</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
 
 
 
