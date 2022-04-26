@@ -93,7 +93,13 @@
 
     <!------------------------------------------------- Content ------------------------------------------------->
     <div class="mt3"></div>
-        <div>
+
+            <div class="sfondo">
+                <div class="hero__content ">
+                  <h1 class="title ">Benvenuto nel sito ufficiale dell'F1 Fantasy!</h1>
+                </div>
+            </div>
+
             <h1>
                 Benvenuto nel sito ufficiale dell'F1 Fantasy!
             </h1>
