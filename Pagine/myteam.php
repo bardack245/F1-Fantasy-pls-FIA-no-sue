@@ -162,7 +162,7 @@
         for ($temp = 0; $temp < count($numero); $temp++)
         {
             echo "<div class = 'box-pilota' style = 'background-color: $colore[$temp]'>
-            <table>
+            <table class='team'>
                 <tr>    
                     <td class='tdfoto'>
                         <div class = 'foto-pilota'>
@@ -216,7 +216,7 @@
 
         if($scuderia != NULL){
             echo "<div class = 'box-scuderia' style = 'border: 5px solid $colore'>
-            <table>
+            <table class='team'>
                 <tr>
                 <td class='tdfoto'>
                     <div class = 'foto-pilota'>

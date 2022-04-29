@@ -65,7 +65,7 @@
         for ($temp = 0; $temp < count($numero); $temp++)
         {
             echo "<a href='pilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
-                    <table>
+                    <table class='team'>
                         <tr>    
                             <td class='tdfoto'>
                                 <div class = 'foto-pilota'>
@@ -126,7 +126,7 @@
         for ($temp = 0; $temp < count($scuderia); $temp++)
         {
             echo "<a href='scuderia.php?nomescuderia=$scuderia[$temp]' class = 'box-scuderia' style = 'border: 5px solid $colore[$temp]' input type='submit'>
-                    <table>
+                    <table class='team'>
                         <tr>
                             <td class='tdfoto'>
                             <div class = 'foto-pilota'>

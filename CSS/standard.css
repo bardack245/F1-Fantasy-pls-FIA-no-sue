@@ -17,8 +17,19 @@
 
 /* -----------------------------------------------More base styles----------------------------------------------- */
 
+@font-face {
+    font-family: f1;
+    src: url(../FONT/F1_Font/Formula1-Regular_web_0.ttf);
+}
+
+@font-face {
+    font-family: f1;
+    src: url(../FONT/F1_Font/Formula1-Bold_web_0.ttf);
+    font-weight: bold;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: f1;
     color: black;
     scrollbar-width: 0%;
 }

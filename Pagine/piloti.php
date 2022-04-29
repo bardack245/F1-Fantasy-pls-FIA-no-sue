@@ -81,7 +81,7 @@
         for ($temp = 0; $temp < count($numero); $temp++)
         {
             echo "<a href='aggiungipilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
-                    <table>
+                    <table class='team'>
                         <tr>    
                             <td class='tdfoto'>
                                 <div class = 'foto-pilota'>

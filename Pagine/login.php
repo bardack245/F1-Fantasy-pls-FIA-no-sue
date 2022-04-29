@@ -63,14 +63,14 @@
 
     <!------------------------------------------------- Login ------------------------------------------------->
     <div class="login">
-        <h1 style="width: 20%; margin: auto;">Accedi</h1>
+        <h1 style="width: 20%; margin: auto; font-size: 50px">Accedi</h1>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
             <table class="tab_input" >
                 <tr>
-                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
+                    <td class="tdlog">Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Password:</td> <td><input type="password" name="password" required></td>
+                    <td class="tdlog">Password:</td> <td><input type="password" name="password" required></td>
                 </tr>
             </table>
             <p style="width: 20%; margin: auto;"><input type="submit" value="Accedi"></p>

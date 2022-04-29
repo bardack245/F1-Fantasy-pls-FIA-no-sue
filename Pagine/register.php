@@ -53,22 +53,22 @@
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
             <table class="tab_input" >
                 <tr>
-                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
+                    <td class='tdlog'>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Password:</td> <td><input type="password" name="password" value = "<?php echo $password; ?>" required></td>
+                    <td class='tdlog'>Password:</td> <td><input type="password" name="password" value = "<?php echo $password; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Conferma PSW:</td> <td><input type="password" name="conferma" value = "<?php echo $conferma; ?>" required></td>
+                    <td class='tdlog'>Conferma PSW:</td> <td><input type="password" name="conferma" value = "<?php echo $conferma; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Nome:</td> <td><input type="text" name="nome" value = "<?php echo $nome; ?>" required></td>
+                    <td class='tdlog'>Nome:</td> <td><input type="text" name="nome" value = "<?php echo $nome; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Cognome:</td> <td><input type="text" name="cognome" value = "<?php echo $cognome; ?>" required></td>
+                    <td class='tdlog'>Cognome:</td> <td><input type="text" name="cognome" value = "<?php echo $cognome; ?>" required></td>
                 </tr>
                 <tr>
-                    <td>Email:</td> <td><input type="email" name="email" value = "<?php echo $email; ?>" required></td>
+                    <td class='tdlog'>Email:</td> <td><input type="email" name="email" value = "<?php echo $email; ?>" required></td>
                 </tr>
             </table>
             <p style="width: 20%; margin: auto;"><input type="submit" value="Registrati"></p>
