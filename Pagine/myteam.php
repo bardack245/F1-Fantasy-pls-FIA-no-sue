@@ -162,24 +162,36 @@
         for ($temp = 0; $temp < count($numero); $temp++)
         {
             echo "<div class = 'box-pilota' style = 'background-color: $colore[$temp]'>
-            <div class = 'foto-pilota'>
-                <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
-            </div>
-            <div class = 'info-pilota'>
-                <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                <p class='normaltxt'>$nazione[$temp]</p>
-                <p class='normaltxt'>$scuderia[$temp]</p>
-            </div>
-            <div class = 'info-pilota'>
-                <p class='bigtxt'>Valore: $valore[$temp] M</p>
-            </div>
-            <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
-                <p>
-                    <input type='submit' name='eliminapilota' value='X'>
-                    <input type='hidden' name='numero' value='$numero[$temp]'>
-                    <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
-                </p>
-            </form>
+            <table>
+                <tr>    
+                    <td class='tdfoto'>
+                        <div class = 'foto-pilota'>
+                            <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
+                        </div>
+                    </td>    
+                    <td>
+                        <div class = 'info-pilota'>
+                            <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
+                            <p class='normaltxt'>$nazione[$temp]</p>
+                            <p class='normaltxt'>$scuderia[$temp]</p>
+                        </div>
+                    </td>
+                    <td class='tdvalore'>
+                        <div class = 'info-pilota'>
+                            <p class='bigtxt'>Valore:<br>$valore[$temp] M</p>
+                        </div>
+                    </td>
+                    <td class='tdbutton'>
+                    <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
+                        <p>
+                            <input type='submit' name='eliminapilota' value='X'>
+                            <input type='hidden' name='numero' value='$numero[$temp]'>
+                            <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
+                        </p>
+                    </form>
+                    </td>
+                </tr>    
+            </table>
             </div>
             <br><br><br>";    
         }
@@ -204,25 +216,37 @@
 
         if($scuderia != NULL){
             echo "<div class = 'box-scuderia' style = 'border: 5px solid $colore'>
-                <div class = 'foto-pilota'>
-                    <img src='$foto' alt='$scuderia' >
-                </div>
-                <div class = 'info-scuderia'>
-                    <p class='bigtxt'>$scuderia </p>
-                    <p class='normaltxt'>$nazione</p>
-                    <p class='normaltxt'>$nome $cognome</p>
-                </div>
-                <div class = 'info-scuderia'>
-                    <p class='bigtxt'>Valore: $valore M</p>
-                </div>
-                <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
+            <table>
+                <tr>
+                <td class='tdfoto'>
+                    <div class = 'foto-pilota'>
+                        <img src='$foto' alt='$scuderia' >
+                    </div>
+                </td>
+                <td>
+                    <div class = 'info-scuderia'>
+                        <p class='bigtxt'>$scuderia</p>
+                        <p class='normaltxt'>$nazione</p>
+                        <p class='normaltxt'>$nome $cognome</p>
+                    </div>
+                </td>
+                <td class='tdvalore'>
+                    <div class = 'info-scuderia'>
+                        <p class='bigtxt'>Valore:<br>$valore M</p>
+                    </div>
+                </td>
+                <td class='tdbutton'>
+                    <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
                     <p>
-                        <input type='submit' name='eliminascuderia' value='X'>
-                        <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
-                        <input type='hidden' name='scuderia' value='$scuderia'>
+                    <input type='submit' name='eliminascuderia' value='X'>
+                    <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
+                    <input type='hidden' name='scuderia' value='$scuderia'>
                     </p>
-                </form>
-                </div>
+                    </form>
+                </td>
+                </tr>
+            </table>
+            </div>
                 <br><br><br>";
         } else{
             echo "<a href='scuderie.php' class = 'box-scuderia' style = 'border: 5px solid black' input type='submit'>

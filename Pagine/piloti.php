@@ -81,17 +81,27 @@
         for ($temp = 0; $temp < count($numero); $temp++)
         {
             echo "<a href='aggiungipilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
-                <div class = 'foto-pilota'>
-                    <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
-                </div>
-                <div class = 'info-pilota'>
-                    <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                    <p class='normaltxt'>$nazione[$temp]</p>
-                    <p class='normaltxt'>$scuderia[$temp]</p>
-                </div>
-                <div class = 'info-pilota'>
-                    <p class='bigtxt'>Valore: $valore[$temp]</p>
-                </div>
+                    <table>
+                        <tr>    
+                            <td class='tdfoto'>
+                                <div class = 'foto-pilota'>
+                                    <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
+                                </div>
+                            </td>    
+                            <td>
+                                <div class = 'info-pilota'>
+                                    <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
+                                    <p class='normaltxt'>$nazione[$temp]</p>
+                                    <p class='normaltxt'>$scuderia[$temp]</p>
+                                </div>
+                            </td>
+                            <td class='tdvalore'>
+                                <div class = 'info-pilota'>
+                                    <p class='bigtxt'>Valore:<br>$valore[$temp] M</p>
+                                </div>
+                            </td>
+                        </tr>    
+                    </table>
                 </a>
                 <br><br><br>";
         }
