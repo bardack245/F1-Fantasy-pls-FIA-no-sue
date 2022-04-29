@@ -104,6 +104,15 @@ header {
 
 
 /*  -----------------------------------------------Market ----------------------------------------------- */
+@media (max-width:780px) {
+
+}
+
+@media (max-width:780px) {
+    
+}
+
+
 .box-pilota{
     border-radius: 25px;
     box-shadow:0px 0px 10px 2px #000000 ;
@@ -210,9 +219,16 @@ input[type=submit]{
 }
 
 input[type=submit]:hover{
-    border: 5px solid white;
+    border: 5px solid;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0);
+}
+
+.subpilota{
+    background-color: white;
+}
+
+.subscuderia{
+    background-color: white;
 }
 
 /*  -----------------------------------------------Pilota ----------------------------------------------- */

@@ -184,7 +184,7 @@
                     <td class='tdbutton'>
                     <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
                         <p>
-                            <input type='submit' name='eliminapilota' value='X'>
+                            <input type='submit' name='eliminapilota' value='X' style='border-color: $colore[$temp]; color: $colore[$temp]'>
                             <input type='hidden' name='numero' value='$numero[$temp]'>
                             <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
                         </p>
@@ -238,7 +238,7 @@
                 <td class='tdbutton'>
                     <form action=\"$_SERVER[PHP_SELF]\" method='post' style = 'display: block'>
                     <p>
-                    <input type='submit' name='eliminascuderia' value='X'>
+                    <input type='submit' name='eliminascuderia' value='X' style='border-color: $colore; color: $colore'>
                     <input type='hidden' name='nomesquadra' value='$NomeSquadra'>
                     <input type='hidden' name='scuderia' value='$scuderia'>
                     </p>
