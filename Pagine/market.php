@@ -74,14 +74,14 @@
                             </td>    
                             <td>
                                 <div class = 'info-pilota'>
-                                    <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                                    <p class='normaltxt'>$nazione[$temp]</p>
-                                    <p class='normaltxt'>$scuderia[$temp]</p>
+                                    <p style='font-size: 2.5vw'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
+                                    <p style='font-size: 1vw'>$nazione[$temp]</p>
+                                    <p style='font-size: 1vw'>$scuderia[$temp]</p>
                                 </div>
                             </td>
                             <td class='tdvalore'>
                                 <div class = 'info-pilota'>
-                                    <p class='bigtxt'>Valore:<br>$valore[$temp] M</p>
+                                    <p style='font-size: 2.5vw'>Valore:<br>$valore[$temp] M</p>
                                 </div>
                             </td>
                         </tr>    
@@ -135,14 +135,14 @@
                             </td>
                             <td>
                             <div class = 'info-scuderia'>
-                                <p class='bigtxt'>$scuderia[$temp] </p>
-                                <p class='normaltxt'>$nazione[$temp]</p>
-                                <p class='normaltxt'>$nome[$temp] $cognome[$temp]</p>
+                                <p style='font-size: 2.5vw'>$scuderia[$temp] </p>
+                                <p style='font-size: 1vw'>$nazione[$temp]</p>
+                                <p style='font-size: 1vw'$nome[$temp] $cognome[$temp]</p>
                             </div>
                             </td>
                             <td class='tdvalore'>
                             <div class = 'info-scuderia'>
-                                <p class='bigtxt'>Valore:<br>$valore[$temp] M</p>
+                                <p style='font-size: 2.5vw'>Valore:<br>$valore[$temp] M</p>
                             </div>
                             </td>
                         </tr>

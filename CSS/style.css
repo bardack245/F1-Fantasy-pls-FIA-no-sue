@@ -58,6 +58,10 @@ header {
     color: white;
 }
 
+.hide {
+    display: none;
+}
+
 @media (max-width:768px) {
     .menu {
         position: absolute;
@@ -195,6 +199,29 @@ td{
     text-align: center;
 }
 
+@media (max-width:768px) {
+    .tdlog{
+        font-size: 20px;
+    }
+
+    input [type=text]{
+        width: 400px;
+    }
+
+    input [type=password]{
+        width: 400px;
+    }
+
+    input [type=email]{
+        width: 400px;
+    }
+
+    .foto-pilota{
+        height: 200px;
+    }
+
+}
+
 
 /*  -----------------------------------------------Input ----------------------------------------------- */
 
@@ -246,13 +273,13 @@ input[type=email]{
 }
 
 .foto{
-    height: 500px;
+    height: 600px;
     display: flex;
     float: left;
 }
 
 .value{
-    display: flex;
+    display: block;
     padding-left: 0;
 }
 

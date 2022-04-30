@@ -63,7 +63,7 @@
                 </div>
                 <div class='value'>
                     <p class='bigtxt'>Valore: $valoreF M</p>
-                    <p class='bigtxt' style = 'transform: translateX(300px)'>Punteggio: $punteggioF</p>
+                    <p class='bigtxt'>Punteggio: $punteggioF</p>
                 </div>
                 <div class='block'>
                     <p class='normaltxt'>$nazione</p>

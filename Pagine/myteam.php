@@ -153,7 +153,7 @@
 
         for ($temp = count($numero); $temp < 5; $temp++){
             echo "<a href='piloti.php' class = 'box-pilota' input type='submit'>
-            <p class = 'bigtxt' style = 'margin:auto, text-align:center, width:100%'>Aggiungi pilota<br>+</p>
+            <p class = 'normaltxt'style = 'margin:auto, text-align:center, width:100%'>Aggiungi pilota<br>+</p>
             </a>
             <br><br><br>";    
         }
@@ -170,14 +170,14 @@
                     </td>    
                     <td>
                         <div class = 'info-pilota'>
-                            <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                            <p class='normaltxt'>$nazione[$temp]</p>
-                            <p class='normaltxt'>$scuderia[$temp]</p>
+                            <p style='font-size: 2.5vw'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
+                            <p style='font-size: 1vw'>$nazione[$temp]</p>
+                            <p style='font-size: 1vw'>$scuderia[$temp]</p>
                         </div>
                     </td>
                     <td class='tdvalore'>
                         <div class = 'info-pilota'>
-                            <p class='bigtxt'>Valore:<br>$valore[$temp] M</p>
+                            <p style='font-size: 2.5vw'>Valore:<br>$valore[$temp] M</p>
                         </div>
                     </td>
                     <td class='tdbutton'>
@@ -224,14 +224,14 @@
                 </td>
                 <td>
                     <div class = 'info-scuderia'>
-                        <p class='bigtxt'>$scuderia</p>
-                        <p class='normaltxt'>$nazione</p>
-                        <p class='normaltxt'>$nome $cognome</p>
+                        <p style='font-size: 2.5vw'>$scuderia</p>
+                        <p style='font-size: 1vw'>$nazione</p>
+                        <p style='font-size: 1vw'>$nome $cognome</p>
                     </div>
                 </td>
                 <td class='tdvalore'>
                     <div class = 'info-scuderia'>
-                        <p class='bigtxt'>Valore:<br>$valore M</p>
+                        <p style='font-size: 2.5vw'>Valore:<br>$valore M</p>
                     </div>
                 </td>
                 <td class='tdbutton'>
@@ -249,8 +249,7 @@
                 <br><br><br>";
         } else{
             echo "<a href='scuderie.php' class = 'box-scuderia' style = 'border: 5px solid black' input type='submit'>
-                <p class = 'normaltxt' style = 'text-align: center'>Aggiungi scuderia</p> <br>
-                <p class = 'bigtxt' style = 'text-align: center'>+</p>
+            <p class = 'normaltxt' style = 'margin:auto, text-align:center, width:100%'>Aggiungi scuderia<br>+</p>
                 </a>
                 <br><br><br>";
         }

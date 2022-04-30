@@ -82,28 +82,28 @@
         {
             echo "<a href='aggiungipilota.php?numeropilota=$numero[$temp]' class = 'box-pilota' style = 'background-color: $colore[$temp]' input type='submit'>
                     <table class='team'>
-                        <tr>    
-                            <td class='tdfoto'>
-                                <div class = 'foto-pilota'>
-                                    <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
-                                </div>
-                            </td>    
-                            <td>
-                                <div class = 'info-pilota'>
-                                    <p class='bigtxt'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
-                                    <p class='normaltxt'>$nazione[$temp]</p>
-                                    <p class='normaltxt'>$scuderia[$temp]</p>
-                                </div>
-                            </td>
-                            <td class='tdvalore'>
-                                <div class = 'info-pilota'>
-                                    <p class='bigtxt'>Valore:<br>$valore[$temp] M</p>
-                                </div>
-                            </td>
-                        </tr>    
-                    </table>
-                </a>
-                <br><br><br>";
+                    <tr>    
+                        <td class='tdfoto'>
+                            <div class = 'foto-pilota'>
+                                <img src='$foto[$temp]' alt='$nome[$temp] $cognome[$temp]' >
+                            </div>
+                        </td>    
+                        <td>
+                            <div class = 'info-pilota'>
+                                <p style='font-size: 2.5vw'>$nome[$temp] $cognome[$temp] $numero[$temp]</p>
+                                <p style='font-size: 1vw'>$nazione[$temp]</p>
+                                <p style='font-size: 1vw'>$scuderia[$temp]</p>
+                            </div>
+                        </td>
+                        <td class='tdvalore'>
+                            <div class = 'info-pilota'>
+                                <p style='font-size: 2.5vw'>Valore:<br>$valore[$temp] M</p>
+                            </div>
+                        </td>
+                    </tr>    
+                </table>    
+            </a>
+            <br><br><br>";
         }
     ?>
 
