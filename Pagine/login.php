@@ -64,6 +64,7 @@
     <!------------------------------------------------- Login ------------------------------------------------->
     <div class="login">
         <h1 style="width: 20%; margin: auto; font-size: 50px">Accedi</h1>
+        <div class="mt1"></div>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
             <table class="tab_input" >
                 <tr>
@@ -73,7 +74,8 @@
                     <td class="tdlog">Password:</td> <td><input type="password" name="password" required></td>
                 </tr>
             </table>
-            <p style="width: 20%; margin: auto;"><input type="submit" value="Accedi"></p>
+            <div class="mt1"></div>
+            <p style="width: 20%; margin: auto;"><input type="submit" value="Accedi" class="button"></p>
         </form>
     </div>
 

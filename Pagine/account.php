@@ -13,7 +13,26 @@
 	$strconferma = "Conferma";
 
     $conn = new mysqli($db_servername,$db_username,$db_password,$db_name);
-	$modifica = false;
+	
+    $myquery = "SELECT utente.Nome, utente.Cognome, utente.PSW, utente.Email
+                FROM utente
+                WHERE  Nick = '".$nickname."'";
+
+    $ris = $conn->query($myquery) or die("<p>Query fallita! ".$conn->error."</p>");
+    
+    foreach($ris as $row){
+        $nome = $row["Nome"];
+        $cognome = $row["Cognome"];
+        $password = $row["PSW"];
+        $email = $row["Email"];
+    }
+    
+    
+    
+    
+    
+    
+    $modifica = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pulsante_modifica"])) {
 		if($_POST["pulsante_modifica"] == $strmodifica){
 			$modifica = true;
@@ -56,27 +75,29 @@
     <?php require("header.php") ?>
 
     <div class="login">
-        <h1 style="width: 20%; margin: auto;">Dati</h1>
+        <h1 style="text-align:center;">Dati</h1>
+        <div class="mt1"></div>
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" style="width: 75%; margin: auto;">
             <table class="tab_input" >
                 <tr>
-                    <td>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $row["Nick"]; ?>" disabled="disabled"></td>
+                    <td class='tdlog'>Nickname:</td> <td><input type="text" name="nickname" value = "<?php echo $nickname; ?>" disabled="disabled"></td>
                 </tr>
                 <tr>
-                    <td>Password:</td> <td><input type="text" name="password" value = "<?php echo $row["PSW"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                    <td class='tdlog'>Password:</td> <td><input type="text" name="password" value = "<?php echo $password; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
                 </tr>
                 <tr>
-                    <td>Nome:</td> <td><input type="text" name="nome" value = "<?php echo $row["Nome"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                    <td class='tdlog'>Nome:</td> <td><input type="text" name="nome" value = "<?php echo $nome; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
                 </tr>
                 <tr>
-                    <td>Cognome:</td> <td><input type="text" name="cognome" value = "<?php echo $row["Cognome"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                    <td class='tdlog'>Cognome:</td> <td><input type="text" name="cognome" value = "<?php echo $cognome; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
                 </tr>
                 <tr>
-                    <td>Email:</td> <td><input type="email" name="email" value = "<?php echo $row["Email"]; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
+                    <td class='tdlog'>Email:</td> <td><input type="email" name="email" value = "<?php echo $email; ?>" <?php if(!$modifica) echo "disabled='disabled'"?>></td>
                 </tr>
             </table>
-            <p style="width: 20%; margin: auto;">
-                <input type="submit" name="pulsante_modifica" value="<?php if($modifica==false) echo $strmodifica; else echo $strconferma; ?>">
+            <div class="mt1"></div>
+            <p style="margin: auto; width: 25%">
+                <input type="submit" name="pulsante_modifica" value="<?php if($modifica==false) echo $strmodifica; else echo $strconferma; ?>" class="button">
             </p>
         </form>
     </div>

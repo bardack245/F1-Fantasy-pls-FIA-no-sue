@@ -136,15 +136,15 @@
                 <h1 class = 'titolo bigtxt'>$NomeSquadra</h1>";
         } else {
             echo "<div class = 'mt3'</div>
-                <h1 style='width: 20%; margin: auto;'>Nome della squadra:</h1>
+                <h1 style='text-align:center'>Nome della squadra:</h1>
                 <form action=\"$_SERVER[PHP_SELF]\" method='post' style='width: 75%; margin: auto;'>
                     <table class='tab_input'>
                         <tr>
-                            <td>Nome Squadra:</td> <td><input type='text' name='nomesquadra' required></td>
+                            <td class:'tdlog'>Nome Squadra:</td> <td><input type='text' name='nomesquadra' required></td>
                         </tr>
                     </table>
                     <p style='width: 20%; margin: auto;'>
-                        <input type='submit' name='pulsante_inserisci' value='Inserisci'>
+                        <input type='submit' name='pulsante_inserisci' value='Inserisci' class='button' style='margin: auto'>
                     </p>
                 </form>
                 <div class = 'mt1'></div>";
@@ -153,8 +153,7 @@
 
         for ($temp = count($numero); $temp < 5; $temp++){
             echo "<a href='piloti.php' class = 'box-pilota' input type='submit'>
-            <p class = 'normaltxt' style = 'text-align: center'>Aggiungi pilota</p> <br>
-            <p class = 'bigtxt' style = 'text-align: center'>+</p>
+            <p class = 'bigtxt' style = 'margin:auto, text-align:center, width:100%'>Aggiungi pilota<br>+</p>
             </a>
             <br><br><br>";    
         }
