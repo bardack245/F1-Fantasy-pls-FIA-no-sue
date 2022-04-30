@@ -40,3 +40,6 @@
     header("location: myteam.php")
 
 ?>
+
+
+<!--Fatto da Varisco e Germanò-->

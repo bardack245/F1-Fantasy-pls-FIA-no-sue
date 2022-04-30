@@ -18,4 +18,4 @@ function black_band() {
 
 }
 
-//Fatto da Varisco e De Vecchi
+//Fatto da Varisco e Germanò
