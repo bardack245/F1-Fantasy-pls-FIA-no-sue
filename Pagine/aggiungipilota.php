@@ -17,11 +17,11 @@
         $NomeSquadra = $row["NomeSquadra"];
     }
 
-    $diostronzo = "SELECT count(Numero) AS NumeroPiloti
+    $query = "SELECT count(Numero) AS NumeroPiloti
                     FROM fantapartecipap
                     WHERE NomeSquadra = '$NomeSquadra'";
 
-    $ris = $conn->query($diostronzo) or die("<p>Query fallita! ".$conn->error."</p>");
+    $ris = $conn->query($query) or die("<p>Query fallita! ".$conn->error."</p>");
 
     foreach($ris as $row){
         $NumeroPiloti = $row["NumeroPiloti"];
